@@ -22,16 +22,16 @@ public class AreaCalculator {
         var side = 5;
         Shape shape = new Square(side);
 
-        logDetails(shape);
+        printAreaDetails(shape);
 
         var base = 10;
         var height = 6.5;
         shape = new Triangle(base, height);
 
-        logDetails(shape);
+        printAreaDetails(shape);
     }
 
-    private void logDetails(Shape shape) {
+    private void printAreaDetails(Shape shape) {
         var description = shape.toString();
         var area = shape.calculateArea();
 
