@@ -11,9 +11,9 @@ import java.util.stream.Stream;
  *
  * @author Hiram K. <hiram.kamau@outlook.com>
  */
-public class Polymorphic {
+public class PolymorphicAnimal {
 
-    private static final Logger LOG = Logger.getLogger(Polymorphic.class.getName());
+    private static final Logger LOG = Logger.getLogger(PolymorphicAnimal.class.getName());
 
     public static void main(String[] args) {
         var dog = new Dog();
