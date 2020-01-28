@@ -11,11 +11,15 @@ import java.util.stream.Stream;
  *
  * @author Hiram K. <hiram.kamau@outlook.com>
  */
-public class PolymorphicAnimal {
+class PolymorphicAnimal {
 
     private static final Logger LOG = Logger.getLogger(PolymorphicAnimal.class.getName());
 
     public static void main(String[] args) {
+        new PolymorphicAnimal().makeSoundTest();
+    }
+
+    private void makeSoundTest() {
         var dog = new Dog();
         var cat = new Cat();
 
@@ -27,7 +31,7 @@ public class PolymorphicAnimal {
         abstract void makeSound();
     }
 
-    static class Dog extends Animal {
+    class Dog extends Animal {
 
         @Override
         void makeSound() {
@@ -36,7 +40,7 @@ public class PolymorphicAnimal {
 
     }
 
-    static class Cat extends Animal {
+    class Cat extends Animal {
 
         @Override
         void makeSound() {

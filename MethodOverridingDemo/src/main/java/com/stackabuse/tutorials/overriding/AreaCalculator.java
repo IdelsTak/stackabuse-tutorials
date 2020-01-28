@@ -15,6 +15,10 @@ public class AreaCalculator {
     private static final Logger LOG = Logger.getLogger(AreaCalculator.class.getName());
 
     public static void main(String[] args) {
+        new AreaCalculator().calculateAreaTest();
+    }
+
+    private void calculateAreaTest() {
         var side = 5;
         Shape shape = new Square(side);
 
@@ -25,13 +29,12 @@ public class AreaCalculator {
         shape = new Triangle(base, height);
 
         logDetails(shape);
-
     }
 
-    private static void logDetails(Shape shape) {
+    private void logDetails(Shape shape) {
         var description = shape.toString();
         var area = shape.calculateArea();
-        
+
         LOG.log(Level.INFO, "Area of {0} = {1}", new Object[]{description, area});
     }
 
@@ -40,7 +43,7 @@ public class AreaCalculator {
         abstract Number calculateArea();
     }
 
-    static class Triangle extends Shape {
+    class Triangle extends Shape {
 
         private final double base;
         private final double height;
@@ -64,7 +67,7 @@ public class AreaCalculator {
 
     }
 
-    static class Square extends Shape {
+    class Square extends Shape {
 
         private final double side;
 

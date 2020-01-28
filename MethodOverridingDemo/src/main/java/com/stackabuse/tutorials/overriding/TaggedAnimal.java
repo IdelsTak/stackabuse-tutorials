@@ -11,18 +11,15 @@ import java.util.stream.Stream;
  *
  * @author Hiram K. <hiram.kamau@outlook.com>
  */
-public class TaggedAnimal {
+class TaggedAnimal {
 
     private static final Logger LOG = Logger.getLogger(TaggedAnimal.class.getName());
 
-public static void main(String[] args) {
-    var dog = new Dog();
-    var cat = new Cat();
+    public static void main(String[] args) {
+        new TaggedAnimal().makeSoundTest();
+    }
 
-    Stream.of(dog, cat).forEach(animal -> makeSound(animal));
-}
-
-    static void makeSound(Object animal) {
+    private void makeSound(Object animal) {
         switch (animal.toString()) {
             case "Dog":
                 LOG.log(Level.INFO, ((Dog) animal).bark());
@@ -35,7 +32,14 @@ public static void main(String[] args) {
         }
     }
 
-    static class Dog {
+    private void makeSoundTest() {
+        var dog = new Dog();
+        var cat = new Cat();
+
+        Stream.of(dog, cat).forEach(animal -> makeSound(animal));
+    }
+
+    class Dog {
 
         String bark() {
             return "Bark!";
@@ -48,7 +52,7 @@ public static void main(String[] args) {
 
     }
 
-    static class Cat {
+    class Cat {
 
         String meow() {
             return "Meow!";
