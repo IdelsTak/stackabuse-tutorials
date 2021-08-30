@@ -1,0 +1,10 @@
+com/github/idelstak/stream/to/list/MyCollectorBloodBank.class
+com/github/idelstak/stream/to/list/LambdaBloodBank.class
+com/github/idelstak/stream/to/list/MembersBloodBank.class
+com/github/idelstak/stream/to/list/MyCollector.class
+com/github/idelstak/stream/to/list/BloodBank.class
+com/github/idelstak/stream/to/list/CollectorsBloodBank.class
+com/github/idelstak/stream/to/list/AbstractBloodBank.class
+com/github/idelstak/stream/to/list/MyCollector$1.class
+com/github/idelstak/stream/to/list/UnmodifiableBloodBank.class
+com/github/idelstak/stream/to/list/Donor.class
