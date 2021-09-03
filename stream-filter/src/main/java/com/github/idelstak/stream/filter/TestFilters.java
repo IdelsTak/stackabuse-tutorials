@@ -21,8 +21,9 @@ public class TestFilters {
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.printf("Time taken by many sequential filters = %d ms\n", (endTime - startTime));
-        
+        System.out
+                .printf("Time taken by many sequential filters = %d ms\n", (endTime - startTime));
+
         startTime = System.currentTimeMillis();
 
         for (int i = 0; i < numberOfTests; i++) {
@@ -30,8 +31,9 @@ public class TestFilters {
         }
 
         endTime = System.currentTimeMillis();
-        System.out.printf("Time taken by many parallel filters = %d ms\n", (endTime - startTime));
-        
+        System.out
+                .printf("Time taken by many parallel filters = %d ms\n", (endTime - startTime));
+
         startTime = System.currentTimeMillis();
 
         for (int i = 0; i < numberOfTests; i++) {
@@ -39,8 +41,9 @@ public class TestFilters {
         }
 
         endTime = System.currentTimeMillis();
-        System.out.printf("Time taken by combined sequential filters = %d ms\n", (endTime - startTime));
-        
+        System.out
+                .printf("Time taken by combined sequential filters = %d ms\n", (endTime - startTime));
+
         startTime = System.currentTimeMillis();
 
         for (int i = 0; i < numberOfTests; i++) {
@@ -48,8 +51,9 @@ public class TestFilters {
         }
 
         endTime = System.currentTimeMillis();
-        System.out.printf("Time taken by combined parallel filters = %d ms\n", (endTime - startTime));
-        
+        System.out
+                .printf("Time taken by combined parallel filters = %d ms\n", (endTime - startTime));
+
         startTime = System.currentTimeMillis();
 
         for (int i = 0; i < numberOfTests; i++) {
@@ -57,7 +61,8 @@ public class TestFilters {
         }
 
         endTime = System.currentTimeMillis();
-        System.out.printf("Time taken by filtering using classic for loop = %d ms\n", (endTime - startTime));
+        System.out
+                .printf("Time taken by filtering using classic for loop = %d ms\n", (endTime - startTime));
     }
 
 }

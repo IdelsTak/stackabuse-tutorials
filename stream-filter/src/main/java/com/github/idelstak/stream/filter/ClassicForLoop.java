@@ -19,7 +19,7 @@ public class ClassicForLoop extends FilterFigures {
 
             for (int j = 0; j < randomFigures.size(); j++) {
                 Double figure = randomFigures.get(j);
-                
+
                 if (figure < Math.PI
                         && figure > Math.E
                         && figure != 3
