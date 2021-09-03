@@ -9,17 +9,19 @@ package com.github.idelstak.stream.filter;
  */
 public class ManyParallelFilters extends FilterFigures {
 
+    public ManyParallelFilters(double exponent) {
+        super(exponent);
+    }
+
     @Override
     public void doFilter() {
-        for (int i = 0; i < 4; i++) {
-            long count = super.getRandomFigures()
-                    .stream()
-                    .parallel()
-                    .filter(figure -> figure < Math.PI)
-                    .filter(figure -> figure > Math.E)
-                    .filter(figure -> figure != 3)
-                    .filter(figure -> figure != 2)
-                    .count();
-        }
+        long count = super.getRandomFigures()
+                .stream()
+                .parallel()
+                .filter(figure -> figure < Math.PI)
+                .filter(figure -> figure > Math.E)
+                .filter(figure -> figure != 3)
+                .filter(figure -> figure != 2)
+                .count();
     }
 }

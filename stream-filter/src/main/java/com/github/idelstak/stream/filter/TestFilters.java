@@ -14,11 +14,9 @@ public class TestFilters {
      */
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        int numberOfTests = 10_000;
+        int exponent = 7;
 
-        for (int i = 0; i < numberOfTests; i++) {
-            new ManySequentialFilters().doFilter();
-        }
+        new ManySequentialFilters(exponent).doFilter();
 
         long endTime = System.currentTimeMillis();
         System.out
@@ -26,9 +24,7 @@ public class TestFilters {
 
         startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < numberOfTests; i++) {
-            new ManyParallelFilters().doFilter();
-        }
+        new ManyParallelFilters(exponent).doFilter();
 
         endTime = System.currentTimeMillis();
         System.out
@@ -36,9 +32,7 @@ public class TestFilters {
 
         startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < numberOfTests; i++) {
-            new CombinedSequentialFilters().doFilter();
-        }
+        new CombinedSequentialFilters(exponent).doFilter();
 
         endTime = System.currentTimeMillis();
         System.out
@@ -46,9 +40,7 @@ public class TestFilters {
 
         startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < numberOfTests; i++) {
-            new CombinedSequentialFilters().doFilter();
-        }
+        new CombinedParallelFilters(exponent).doFilter();
 
         endTime = System.currentTimeMillis();
         System.out
@@ -56,9 +48,7 @@ public class TestFilters {
 
         startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < numberOfTests; i++) {
-            new ClassicForLoop().doFilter();
-        }
+        new ClassicForLoop(exponent).doFilter();
 
         endTime = System.currentTimeMillis();
         System.out

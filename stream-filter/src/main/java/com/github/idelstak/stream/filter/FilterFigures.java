@@ -14,20 +14,17 @@ import java.util.stream.Collectors;
  */
 public abstract class FilterFigures {
 
-    private final ThreadLocalRandom random = ThreadLocalRandom.current();
-    private int figuresCount = 1;
+    private final double exponent;
+
+    public FilterFigures(double exponent) {
+        this.exponent = exponent;
+    }
 
     public abstract void doFilter();
 
-    private int getFiguresCount() {
-        figuresCount *= 10;
-
-        return figuresCount;
-    }
-
     protected List<Double> getRandomFigures() {
-        return random
-                .doubles(this.getFiguresCount(), 1, 4)
+        return ThreadLocalRandom.current()
+                .doubles((long) Math.pow(10, exponent), 1, 4)
                 .boxed()
                 .collect(
                         Collectors.collectingAndThen(

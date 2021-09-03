@@ -11,21 +11,23 @@ import java.util.List;
  */
 public class ClassicForLoop extends FilterFigures {
 
+    public ClassicForLoop(double exponent) {
+        super(exponent);
+    }
+
     @Override
     public void doFilter() {
-        for (int i = 0; i < 4; i++) {
-            List<Double> randomFigures = super.getRandomFigures();
-            long count = 0;
+        List<Double> randomFigures = super.getRandomFigures();
+        long count = 0;
 
-            for (int j = 0; j < randomFigures.size(); j++) {
-                Double figure = randomFigures.get(j);
+        for (int j = 0; j < randomFigures.size(); j++) {
+            Double figure = randomFigures.get(j);
 
-                if (figure < Math.PI
-                        && figure > Math.E
-                        && figure != 3
-                        && figure != 2) {
-                    count = count + 1;
-                }
+            if (figure < Math.PI
+                    && figure > Math.E
+                    && figure != 3
+                    && figure != 2) {
+                count = count + 1;
             }
         }
     }
