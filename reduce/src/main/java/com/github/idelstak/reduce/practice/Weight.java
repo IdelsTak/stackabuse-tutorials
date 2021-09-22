@@ -30,7 +30,7 @@ public class Weight {
 
     @Override
     public String toString() {
-        return String.format("Unit weight: %.2f lbs", value);
+        return String.format("%.2f lbs", this.value);
     }
 
 }

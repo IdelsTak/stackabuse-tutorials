@@ -34,8 +34,7 @@ public class Transaction {
     }
 
     public Transaction getMin(Transaction otherTransaction) {
-        Price min = this.getTotalPrice()
-                .getMin(otherTransaction.getTotalPrice());
+        Price min = this.getTotalPrice().getMin(otherTransaction.getTotalPrice());
 
         return min.equals(this.getTotalPrice()) ? this : otherTransaction;
     }
@@ -44,9 +43,9 @@ public class Transaction {
     public String toString() {
         return String.format(
                 "{\n"
-                + "Product: %s; price: $%.2f\n"
-                + "Qty: %d lbs\n"
-                + "Total price: $%.2f\n"
+                + " Product: %s; price: $%.2f\n"
+                + " Qty: %d lbs\n"
+                + " Total price: $%.2f\n"
                 + "}",
                 this.getProduct().getName(),
                 this.getProduct().getPrice().getValue(),

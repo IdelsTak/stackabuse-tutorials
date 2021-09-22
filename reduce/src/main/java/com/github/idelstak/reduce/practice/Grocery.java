@@ -35,22 +35,24 @@ public class Grocery {
                 .map(Transaction::getTotalPrice)
                 .reduce(Price.NIL, Price::add);
 
-        System.out.printf("Total price: $%.2f\n", totalPrice.getValue());
+        System.out.printf("Total price: %s\n", totalPrice);
         //Total weight of items in the transaction
         Weight totalWeight = transactions.stream()
                 .map(Transaction::getTotalWeight)
                 .reduce(Weight.NIL, Weight::add);
-        
-        System.out.printf("Total weight: %.2f lbs\n", totalWeight.getValue());
+
+        System.out.printf("Total weight: %s\n", totalWeight);
         //Highest value in the transaction
         transactions.stream()
                 .map(Transaction::getTotalPrice)
                 .reduce(Price::getMax)
-                .ifPresent(price -> System.out.printf("Highest price: $%.2f\n", price.getValue()));
+                .ifPresent(price -> System.out.printf("Highest price: %s\n", price));
         //Transaction with the lowest value        
         transactions.stream()
                 .reduce(Transaction::getMin)
-                .ifPresent(transaction -> System.out.printf("Transaction with lowest value: %s\n", transaction));
+                .ifPresent(transaction -> {
+                    System.out.printf("Transaction with lowest value: %s\n", transaction);
+                });
     }
 
 }

@@ -61,7 +61,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.format("Unit price: $ %.2f", value);
+        return String.format("$%.2f", value);
     }
 
 }
