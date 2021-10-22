@@ -1,9 +1,13 @@
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/MyCollector.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/UnmodifiableBloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/MembersBloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/BloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/AbstractBloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/MyCollectorBloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/CollectorsBloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/LambdaBloodBank.java
-/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/Donor.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/LambdaBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/ArrayOfObjectsBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/BloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/UnmodifiableBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/StreamReduceBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/AbstractBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/ArrayBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/MembersBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/ForEachBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/Donor.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/CollectorsBloodBank.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/CustomCollector.java
+/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list/src/main/java/com/github/idelstak/stream/to/list/CustomCollectorBloodBank.java

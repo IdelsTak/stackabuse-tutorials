@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.github.idelstak.stream.to.list.LambdaBloodBankTest" time="0.06" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.github.idelstak.stream.to.list.LambdaBloodBankTest" time="0.067" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/zulu-8/jre/lib/amd64"/>
     <property name="java.vm.version" value="25.302-b08"/>
     <property name="jdk.vendor.version" value="Zulu 8.56.0.21-CA-linux64"/>
     <property name="java.vm.vendor" value="Azul Systems, Inc."/>
-    <property name="maven.multiModuleProjectDirectory" value="/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list"/>
     <property name="java.vendor.url" value="http://www.azul.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -15,9 +15,8 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
-    <property name="test" value="com.github.idelstak.stream.to.list.LambdaBloodBankTest#shouldListAvailableBloodTypes"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/mwangi/upwork-jobs/David Landup/28015967 - Author for Python-Java-JavaScript Educational Platform/Milestone 1 - Article 1 - Java 8 - Convert a Stream to List/stream-to-list"/>
+    <property name="user.dir" value="/home/mwangi/NetBeansProjects/stackabuse-tutorials/stream-to-list"/>
     <property name="java.runtime.version" value="1.8.0_302-b08"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/zulu-8/jre/lib/endorsed"/>
@@ -48,7 +47,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/zulu-8/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=com.github.idelstak.stream.to.list.LambdaBloodBankTest#shouldListAvailableBloodTypes -Dmaven.ext.class.path=/usr/share/apache-netbeans/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/usr/share/apache-netbeans/java/maven-nblib/netbeans-eventspy.jar clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -65,5 +64,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.github.idelstak.stream.to.list.LambdaBloodBankTest" name="shouldListAvailableBloodTypes" time="0.06"/>
+  <testcase classname="com.github.idelstak.stream.to.list.LambdaBloodBankTest" name="shouldListAvailableBloodTypes" time="0.067"/>
 </testsuite>

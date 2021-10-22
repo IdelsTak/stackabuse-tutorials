@@ -31,5 +31,4 @@ public class ClassicForLoop extends FilterFigures {
             }
         }
     }
-
 }
