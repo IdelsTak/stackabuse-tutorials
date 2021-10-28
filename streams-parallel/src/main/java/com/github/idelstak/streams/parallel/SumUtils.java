@@ -4,9 +4,11 @@
 package com.github.idelstak.streams.parallel;
 
 import java.util.concurrent.ExecutorService;
-import java.util.stream.Stream;
+import java.util.stream.LongStream;
 
 import static java.lang.Runtime.getRuntime;
+import static java.lang.System.out;
+import static java.lang.Thread.currentThread;
 import static java.util.concurrent.Executors.newFixedThreadPool;
 
 /**
@@ -24,13 +26,14 @@ public class SumUtils {
     }
 
     public static void main(String[] args) {
-        SumUtils utils = new SumUtils(1_000);
+        SumUtils utils = new SumUtils(3);
 
-        System.out.println("Sum for loop: " + utils.sumUsingClassicForLoop());
-
-        utils = new SumUtils(10);
-
-        System.out.println("Sum threading: " + utils.sumUsingThreading());
+//        System.out.println("Sum for loop: " + utils.sumUsingClassicForLoop());
+//
+//        utils = new SumUtils(10);
+//
+//        System.out.println("Sum threading: " + utils.sumUsingThreading());
+        System.out.println("Sum parallel: " + utils.sumUsingParallel());
     }
 
     public long sumUsingClassicForLoop() {
@@ -62,9 +65,22 @@ public class SumUtils {
     }
 
     public long sumUsingParallel() {
-        return Stream.iterate(1L, val -> val + 1L)
-                .limit(n)
+        return LongStream.rangeClosed(1L, 10)
                 .parallel()
-                .reduce(0L, (val1, val2) -> Long.sum(val1, val2));
+                .peek(this::printThreadName)
+                .reduce(0L, this::printSum);
+    }
+
+    private long printSum(long a, long b) {
+        long sum = a + b;
+        String name = currentThread().getName();
+        
+        out.printf("%s has: %d; plus: %d; result: %d\n", name, a, b, sum);
+        return sum;
+    }
+
+    private void printThreadName(long a) {
+        String name = currentThread().getName();
+        out.println(name + " offers:" + a);
     }
 }
