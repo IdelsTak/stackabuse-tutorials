@@ -49,7 +49,6 @@ public class DeathsCSV {
                 .stream(csvr.spliterator(), false)
                 .map(DeathsCSV::toDeathStats)
                 .forEach(out::println);
-
     }
 
     private static DeathStats toDeathStats(CSVRecord csvr) throws NumberFormatException {
