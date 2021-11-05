@@ -52,17 +52,21 @@ public class DeathsCSV {
 
     }
 
-    private static DeathStats toDeathStats(CSVRecord r) throws NumberFormatException {
+    private static DeathStats toDeathStats(CSVRecord csvr) throws NumberFormatException {
         return new DeathStats(
-                r.get(0),
-                r.get(1),
-                r.get(2),
-                (int) parseDouble(r.get(3)),
-                (int) parseDouble(r.get(4)),
-                (int) parseDouble(r.get(5)),
-                (int) parseDouble(r.get(6)),
-                (int) parseDouble(r.get(7))
+                csvr.get(0),
+                csvr.get(1),
+                csvr.get(2),
+                toInt(csvr.get(3)),
+                toInt(csvr.get(4)),
+                toInt(csvr.get(5)),
+                toInt(csvr.get(6)),
+                toInt(csvr.get(7))
         );
+    }
+
+    private static int toInt(String s) throws NumberFormatException {
+        return (int) parseDouble(s);
     }
 
     private static URI initURI(URL url) throws IOException, URISyntaxException {
