@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -14,10 +15,12 @@ import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.stream.StreamSupport;
+import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.System.out;
+import static java.math.RoundingMode.HALF_UP;
 import static java.nio.file.Paths.get;
 import static java.nio.file.spi.FileSystemProvider.installedProviders;
 import static java.util.Collections.emptyMap;
@@ -30,42 +33,42 @@ import static org.apache.commons.csv.CSVFormat.DEFAULT;
 public class DeathsCSV {
 
     public static void main(String[] args) throws URISyntaxException, IOException {
-        String rsc = "deaths-from-indoor-air-pollution-by-age.csv";
         Class<DeathsCSV> clazz = DeathsCSV.class;
+        String rsc = "deaths-from-indoor-air-pollution-by-age.csv";
         URL url = clazz.getResource(rsc);
         URI uri = initURI(url);
         Path p = get(uri);
         File f = p.toFile();
         Reader in = new FileReader(f);
-
-        Iterable<CSVRecord> csvr = DEFAULT
-                .builder()
+        CSVFormat csvf = DEFAULT.builder()
                 .setHeader()
                 .setSkipHeaderRecord(true)
-                .build()
-                .parse(in);
+                .build();
 
         StreamSupport
-                .stream(csvr.spliterator(), false)
+                .stream(
+                        csvf.parse(in).spliterator(),
+                        false
+                )
                 .map(DeathsCSV::toDeathStats)
                 .forEach(out::println);
     }
 
-    private static DeathStats toDeathStats(CSVRecord csvr) throws NumberFormatException {
+    private static DeathStats toDeathStats(CSVRecord rec) throws NumberFormatException {
         return new DeathStats(
-                csvr.get(0),
-                csvr.get(1),
-                csvr.get(2),
-                toInt(csvr.get(3)),
-                toInt(csvr.get(4)),
-                toInt(csvr.get(5)),
-                toInt(csvr.get(6)),
-                toInt(csvr.get(7))
+                rec.get(0),
+                rec.get(1),
+                rec.get(2),
+                toDecimal(rec.get(3)),
+                toDecimal(rec.get(4)),
+                toDecimal(rec.get(5)),
+                toDecimal(rec.get(6)),
+                toDecimal(rec.get(7))
         );
     }
 
-    private static int toInt(String s) throws NumberFormatException {
-        return (int) parseDouble(s);
+    private static BigDecimal toDecimal(String s) throws NumberFormatException {
+        return new BigDecimal(parseDouble(s)).setScale(3, HALF_UP);
     }
 
     private static URI initURI(URL url) throws IOException, URISyntaxException {
