@@ -3,21 +3,32 @@
  */
 package com.github.idelstak.collectingandthen;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
 public class DeathStats {
+
     private final String country;
     private final String code;
     private final String year;
-    private final int underFive;
-    private final int seventyPlus;
-    private final int fiftyToSixtyNine;
-    private final int fiveToFourteen;
-    private final int fifteenToFourtyNine;
+    private final BigDecimal underFive;
+    private final BigDecimal seventyPlus;
+    private final BigDecimal fiftyToSixtyNine;
+    private final BigDecimal fiveToFourteen;
+    private final BigDecimal fifteenToFourtyNine;
 
-    public DeathStats(String country, String code, String year, int underFive, int seventyPlus, int fiftyToSixtyNine, int fiveToFourteen, int fifteenToFourtyNine) {
+    public DeathStats(
+            String country,
+            String code,
+            String year,
+            BigDecimal underFive,
+            BigDecimal seventyPlus,
+            BigDecimal fiftyToSixtyNine,
+            BigDecimal fiveToFourteen,
+            BigDecimal fifteenToFourtyNine) {
         this.country = country;
         this.code = code;
         this.year = year;
@@ -42,5 +53,5 @@ public class DeathStats {
         sb.append('}');
         return sb.toString();
     }
-    
+
 }
