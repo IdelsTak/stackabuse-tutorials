@@ -1,0 +1,296 @@
+cd /home/mwangi/NetBeansProjects/stackabuse-tutorials/collectingAndThen; JAVA_HOME=/usr/lib/jvm/zulu-8 M2_HOME=/opt/maven /opt/maven/bin/mvn -Dexec.vmArgs= "-Dexec.args=${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}" -Dexec.executable=/usr/lib/jvm/zulu-8/bin/java -Dexec.mainClass=com.github.idelstak.collectingandthen.benchmark.BenchmarkRunner -Dexec.classpathScope=runtime -Dexec.appArgs= org.codehaus.mojo:exec-maven-plugin:3.0.0:exec
+Running NetBeans Compile On Save execution. Phase execution is skipped and output directories of dependency projects (with Compile on Save turned on) will be used instead of their jar artifacts.
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+Scanning for projects...
+
+---------------< com.github.idelstak:collectingAndThen >----------------
+Building collectingAndThen 1.0.0-SNAPSHOT
+--------------------------------[ jar ]---------------------------------
+
+--- exec-maven-plugin:3.0.0:exec (default-cli) @ collectingAndThen ---
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen
+# Parameters: (count = 10)
+
+# Run progress: 0.00% complete, ETA 00:03:40
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 7209118.525 ops/s
+# Warmup Iteration   2: 7507757.806 ops/s
+Iteration   1: 7024595.341 ops/s
+Iteration   2: 7131929.112 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen":
+  7078262.227 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen
+# Parameters: (count = 100)
+
+# Run progress: 10.00% complete, ETA 00:03:24
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 1071746.331 ops/s
+# Warmup Iteration   2: 1047382.646 ops/s
+Iteration   1: 1008701.977 ops/s
+Iteration   2: 1000076.263 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen":
+  1004389.120 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen
+# Parameters: (count = 1000)
+
+# Run progress: 20.00% complete, ETA 00:03:01
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 109736.338 ops/s
+# Warmup Iteration   2: 110844.540 ops/s
+Iteration   1: 85104.497 ops/s
+Iteration   2: 85287.498 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen":
+  85195.997 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen
+# Parameters: (count = 10000)
+
+# Run progress: 30.00% complete, ETA 00:02:38
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 9528.084 ops/s
+# Warmup Iteration   2: 9577.595 ops/s
+Iteration   1: 8087.789 ops/s
+Iteration   2: 5267.407 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen":
+  6677.598 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen
+# Parameters: (count = 100000)
+
+# Run progress: 40.00% complete, ETA 00:02:16
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 482.105 ops/s
+# Warmup Iteration   2: 270.238 ops/s
+Iteration   1: 400.201 ops/s
+Iteration   2: 234.011 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withCollectingAndThen":
+  317.106 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen
+# Parameters: (count = 10)
+
+# Run progress: 50.00% complete, ETA 00:01:57
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 4850982.829 ops/s
+# Warmup Iteration   2: 4600373.785 ops/s
+Iteration   1: 3969039.024 ops/s
+Iteration   2: 4294243.480 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen":
+  4131641.252 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen
+# Parameters: (count = 100)
+
+# Run progress: 60.00% complete, ETA 00:01:33
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 254313.286 ops/s
+# Warmup Iteration   2: 306770.840 ops/s
+Iteration   1: 293043.864 ops/s
+Iteration   2: 296114.849 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen":
+  294579.356 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen
+# Parameters: (count = 1000)
+
+# Run progress: 70.00% complete, ETA 00:01:09
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 13649.261 ops/s
+# Warmup Iteration   2: 13946.874 ops/s
+Iteration   1: 12613.050 ops/s
+Iteration   2: 12844.287 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen":
+  12728.669 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen
+# Parameters: (count = 10000)
+
+# Run progress: 80.00% complete, ETA 00:00:46
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 1117.267 ops/s
+# Warmup Iteration   2: 1109.987 ops/s
+Iteration   1: 1068.219 ops/s
+Iteration   2: 1118.269 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen":
+  1093.244 ops/s
+
+
+# JMH version: 1.33
+# VM version: JDK 1.8.0_312, OpenJDK 64-Bit Server VM, 25.312-b07
+# VM invoker: /usr/lib/jvm/zulu-8/jre/bin/java
+# VM options: -Djdk.gtk.version=2.2
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen
+# Parameters: (count = 100000)
+
+# Run progress: 90.00% complete, ETA 00:00:23
+# Fork: 1 of 1
+Picked up _JAVA_OPTIONS: -Djdk.gtk.version=2.2
+# Warmup Iteration   1: 110.023 ops/s
+# Warmup Iteration   2: 102.069 ops/s
+Iteration   1: 108.872 ops/s
+Iteration   2: 80.592 ops/s
+
+
+Result "com.github.idelstak.collectingandthen.benchmark.CollectingAndThenBenchmark.withoutCollectingAndThen":
+  94.732 ops/s
+
+
+# Run complete. Total time: 00:03:54
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                            (count)   Mode  Cnt        Score   Error  Units
+CollectingAndThenBenchmark.withCollectingAndThen          10  thrpt    2  7078262.227          ops/s
+CollectingAndThenBenchmark.withCollectingAndThen         100  thrpt    2  1004389.120          ops/s
+CollectingAndThenBenchmark.withCollectingAndThen        1000  thrpt    2    85195.997          ops/s
+CollectingAndThenBenchmark.withCollectingAndThen       10000  thrpt    2     6677.598          ops/s
+CollectingAndThenBenchmark.withCollectingAndThen      100000  thrpt    2      317.106          ops/s
+CollectingAndThenBenchmark.withoutCollectingAndThen       10  thrpt    2  4131641.252          ops/s
+CollectingAndThenBenchmark.withoutCollectingAndThen      100  thrpt    2   294579.356          ops/s
+CollectingAndThenBenchmark.withoutCollectingAndThen     1000  thrpt    2    12728.669          ops/s
+CollectingAndThenBenchmark.withoutCollectingAndThen    10000  thrpt    2     1093.244          ops/s
+CollectingAndThenBenchmark.withoutCollectingAndThen   100000  thrpt    2       94.732          ops/s
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time:  03:55 min
+Finished at: 2021-11-11T13:58:47+03:00
+------------------------------------------------------------------------
