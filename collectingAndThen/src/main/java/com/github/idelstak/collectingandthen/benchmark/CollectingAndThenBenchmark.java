@@ -6,6 +6,7 @@ package com.github.idelstak.collectingandthen.benchmark;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collector;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -52,15 +53,14 @@ public class CollectingAndThenBenchmark {
     @OutputTimeUnit(TimeUnit.SECONDS)
     public void withCollectingAndThen(ExecutionPlan plan, Blackhole blackhole) {
         List<Person> people = plan.getPeople();
+        Collector<String, Object, String> col = collectingAndThen(
+                maxBy(comparing(String::length)),
+                s -> s.orElse("?")
+        );
 
         String longestName = people.stream()
                 .map(Person::getFirstName)
-                .collect(
-                        collectingAndThen(
-                                maxBy(comparing(String::length)),
-                                s -> s.orElse("?")
-                        )
-                );
+                .collect(col);
 
         blackhole.consume(longestName);
     }
