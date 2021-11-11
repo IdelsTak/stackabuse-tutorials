@@ -3,7 +3,13 @@
  */
 package com.github.idelstak.collectingandthen.practice;
 
+import com.github.idelstak.collectingandthen.practice.CountryStats.Mortality;
 import java.math.BigDecimal;
+import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.maxBy;
 
 /**
  *
@@ -14,11 +20,11 @@ public class CountryStats {
     private final String country;
     private final String code;
     private final String year;
-    private final BigDecimal underFive;
-    private final BigDecimal seventyPlus;
-    private final BigDecimal fiftyToSixtyNine;
-    private final BigDecimal fiveToFourteen;
-    private final BigDecimal fifteenToFourtyNine;
+    private final Mortality underFive;
+    private final Mortality seventyPlus;
+    private final Mortality fiftyToSixtyNine;
+    private final Mortality fiveToFourteen;
+    private final Mortality fifteenToFourtyNine;
 
     public CountryStats(
             String country,
@@ -32,11 +38,11 @@ public class CountryStats {
         this.country = country;
         this.code = code;
         this.year = year;
-        this.underFive = underFive;
-        this.seventyPlus = seventyPlus;
-        this.fiftyToSixtyNine = fiftyToSixtyNine;
-        this.fiveToFourteen = fiveToFourteen;
-        this.fifteenToFourtyNine = fifteenToFourtyNine;
+        this.underFive = new Mortality("Under 5 yrs", underFive);
+        this.seventyPlus = new Mortality("Over 70 yrs", seventyPlus);
+        this.fiftyToSixtyNine = new Mortality("Between 50 and 69 yrs", fiftyToSixtyNine);
+        this.fiveToFourteen = new Mortality("Between 5 and 14 yrs", fiveToFourteen);
+        this.fifteenToFourtyNine = new Mortality("Between 15 and 49 yrs", fifteenToFourtyNine);
     }
 
     public String getCountry() {
@@ -47,8 +53,27 @@ public class CountryStats {
         return year;
     }
 
-    public BigDecimal getUnderFive() {
+    public Mortality getUnderFive() {
         return underFive;
+    }
+
+    public Mortality getHighest() {
+        Stream<Mortality> stream = Stream.of(
+                underFive,
+                fiveToFourteen,
+                fifteenToFourtyNine,
+                fiftyToSixtyNine,
+                seventyPlus
+        );
+
+        Mortality highestMortality = stream.collect(
+                collectingAndThen(
+                        maxBy(comparing(Mortality::getMortality)),
+                        m -> m.orElseThrow(RuntimeException::new)
+                )
+        );
+        
+        return highestMortality;
     }
 
     @Override
@@ -64,6 +89,36 @@ public class CountryStats {
         sb.append(", (70+ yrs)=").append(seventyPlus);
         sb.append('}');
         return sb.toString();
+    }
+
+    public class Mortality implements Comparable<Mortality> {
+
+        private final String ageGroup;
+        private final BigDecimal mortality;
+
+        public Mortality(String ageGroup, BigDecimal mortality) {
+            this.ageGroup = ageGroup;
+            this.mortality = mortality;
+        }
+
+        public String getAgeGroup() {
+            return ageGroup;
+        }
+
+        public BigDecimal getMortality() {
+            return mortality;
+        }
+
+        @Override
+        public String toString() {
+            return "Mortality{" + "ageGroup=" + ageGroup + ", mortality=" + mortality + '}';
+        }
+
+        @Override
+        public int compareTo(Mortality otherMortality) {
+            return comparing(Mortality::getMortality).compare(this, otherMortality);
+        }
+
     }
 
 }
