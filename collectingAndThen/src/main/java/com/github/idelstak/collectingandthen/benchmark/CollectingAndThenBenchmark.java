@@ -3,6 +3,7 @@
  */
 package com.github.idelstak.collectingandthen.benchmark;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -34,9 +35,11 @@ public class CollectingAndThenBenchmark {
     public void withoutCollectingAndThen(ExecutionPlan plan, Blackhole blackhole) {
         List<Person> people = plan.getPeople();
 
+        Comparator<String> byNameLength = comparing(String::length).reversed();
+
         String longestName = people.stream()
                 .map(Person::getFirstName)
-                .sorted(comparing(String::length).reversed())
+                .sorted(byNameLength)
                 .findFirst()
                 .orElse("?");
 
