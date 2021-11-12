@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.maxBy;
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
-public class CountryStats {
+public class CountryStats implements Comparable<CountryStats>{
 
     private final String country;
     private final String code;
@@ -89,6 +89,11 @@ public class CountryStats {
         sb.append(", (70+ yrs)=").append(seventyPlus);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(CountryStats other) {
+        return comparing(CountryStats::getUnderFive).compare(this, other);
     }
 
     public class Mortality implements Comparable<Mortality> {
