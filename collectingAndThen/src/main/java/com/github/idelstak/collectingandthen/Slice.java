@@ -13,27 +13,27 @@ import java.util.stream.Stream;
  */
 public class Slice {
 
-    private final Stream<Integer> s;
-    private final int from;
-    private final int to;
+  private final Stream<Integer> s;
+  private final int from;
+  private final int to;
 
-    public Slice(Stream<Integer> s, int from, int to) {
-        this.s = s;
-        this.from = from;
-        this.to = to;
-    }
+  public Slice(Stream<Integer> s, int from, int to) {
+    this.s = s;
+    this.from = from;
+    this.to = to;
+  }
 
-    public List<Integer> getList() {
-        return s.collect(
-                Collectors.collectingAndThen(Collectors.toList(),
-                        l -> {
-                            return l.stream()
-                                    .skip(from)
-                                    .limit(to - (from - 1))
-                                    .collect(Collectors.toList());
-                        }
-                )
-        );
-    }
+  public List<Integer> getList() {
+    return s.collect(
+            Collectors.collectingAndThen(Collectors.toList(),
+                    l -> {
+                      return l.stream()
+                              .skip(from)
+                              .limit(to - (from - 1))
+                              .collect(Collectors.toList());
+                    }
+            )
+    );
+  }
 
 }
