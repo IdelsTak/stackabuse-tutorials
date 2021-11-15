@@ -28,118 +28,118 @@ import static org.junit.Assert.assertEquals;
  */
 public class StatsSourceTest {
 
-    private static final StatsSource SRC = new StatsSource();
-    private static List<CountryStats> stats;
-    private Supplier<RuntimeException> exc = RuntimeException::new;
+  private static final StatsSource SRC = new StatsSource();
+  private static List<CountryStats> stats;
+  private Supplier<RuntimeException> exc = RuntimeException::new;
 
-    @BeforeClass
-    public static void loadStats() {
-        stats = SRC.getStats();
-    }
+  @BeforeClass
+  public static void loadStats() {
+    stats = SRC.getStats();
+  }
 
-    @Test
-    public void shouldLoadManyStats() {
-        assertEquals(6468, stats.size());
-    }
+  @Test
+  public void shouldLoadManyStats() {
+    assertEquals(6468, stats.size());
+  }
 
-    @Test
-    public void shouldGroupByCountry() {
-        Map<String, List<CountryStats>> result = stats.stream()
-                .collect(
-                        groupingBy(
-                                CountryStats::getCountry,
-                                toList()
-                        )
-                );
+  @Test
+  public void shouldGroupByCountry() {
+    Map<String, List<CountryStats>> result = stats.stream()
+            .collect(
+                    groupingBy(
+                            CountryStats::getCountry,
+                            toList()
+                    )
+            );
 
-        result.entrySet()
-                .stream()
-                .sorted(comparing(Entry::getKey))
-                .limit(2)
-                .forEach(entry -> {
-                    entry.getValue()
-                            .stream()
-                            .sorted(comparing(CountryStats::getYear))
-                            .forEach(stat -> {
+    result.entrySet()
+            .stream()
+            .sorted(comparing(Entry::getKey))
+            .limit(2)
+            .forEach(entry -> {
+              entry.getValue()
+                      .stream()
+                      .sorted(comparing(CountryStats::getYear))
+                      .forEach(stat -> {
 //                                System.out.printf("%s, %s: %.3f\n", entry
 //                                        .getKey(), stat.getYear(), stat
 //                                        .getUnderFive().getMortality());
-                            });
-                });
+                      });
+            });
 
-        Map<String, Optional<CountryStats>> result2 = stats.stream()
-                .collect(
-                        groupingBy(
-                                CountryStats::getCountry,
-                                maxBy(comparing(CountryStats::getUnderFive))
-                        )
-                );
+    Map<String, Optional<CountryStats>> result2 = stats.stream()
+            .collect(
+                    groupingBy(
+                            CountryStats::getCountry,
+                            maxBy(comparing(CountryStats::getUnderFive))
+                    )
+            );
 
-        result2.entrySet()
-                .stream()
-                .sorted(comparing(Entry::getKey))
-                .limit(2)
-                .forEach(entry -> {
-                    CountryStats stat = entry.getValue().orElseThrow(exc);
-                    System.out.printf(
-                            "%s, %s: %.3f\n",
-                            entry.getKey(),
-                            stat.getYear(),
-                            stat.getUnderFive().getMortality());
-                });
-    }
+    result2.entrySet()
+            .stream()
+            .sorted(comparing(Entry::getKey))
+            .limit(2)
+            .forEach(entry -> {
+              CountryStats stat = entry.getValue().orElseThrow(exc);
+              System.out.printf(
+                      "%s, %s: %.3f\n",
+                      entry.getKey(),
+                      stat.getYear(),
+                      stat.getUnderFive().getMortality());
+            });
+  }
 
-    @Test
-    public void shouldCreateSingleGroup() {
-        Map<String, String> result = stats.stream()
-                .collect(groupingBy(CountryStats::getCountry,
-                        TreeMap::new,
-                        collectingAndThen(maxBy(comparing(CountryStats::getUnderFive)),
-                                s -> s
-                                        .orElseThrow(exc)
-                                        .getYear()
-                        )
-                )
-                );
+  @Test
+  public void shouldCreateSingleGroup() {
+    Map<String, String> result = stats.stream()
+            .collect(groupingBy(CountryStats::getCountry,
+                    TreeMap::new,
+                    collectingAndThen(maxBy(comparing(CountryStats::getUnderFive)),
+                            s -> s
+                                    .orElseThrow(exc)
+                                    .getYear()
+                    )
+            )
+            );
 
-        System.out.println(result);
-    }
+    System.out.println(result);
+  }
 
-    @Test
-    public void shouldCreateMultiLevelGroup() {
-        Map<String, Map<String, String>> result = stats.stream()
-                .collect(groupingBy(CountryStats::getCountry,
-                        TreeMap::new,
-                        groupingBy(CountryStats::getYear,
-                                TreeMap::new,
-                                collectingAndThen(maxBy(comparing(CountryStats::getHighest)),
-                                        s -> s
-                                                .orElseThrow(exc)
-                                                .getHighest().getAgeGroup()
-                                )
-                        )
-                )
-                );
+  @Test
+  public void shouldCreateMultiLevelGroup() {
+    Map<String, Map<String, String>> result = stats.stream()
+            .collect(groupingBy(CountryStats::getCountry,
+                    TreeMap::new,
+                    groupingBy(CountryStats::getYear,
+                            TreeMap::new,
+                            collectingAndThen(maxBy(comparing(CountryStats::getHighest)),
+                                    s -> s
+                                            .orElseThrow(exc)
+                                            .getHighest().getAgeGroup()
+                            )
+                    )
+            )
+            );
 
-        System.out.println(result);
-    }
+    System.out.println(result);
+  }
 
-    @Test
-    public void shouldCreatePartition() {
-        Predicate<CountryStats> pr = cs -> cs.getHighest().getMortality()
-                .doubleValue() > 100000;
-        Collector<CountryStats, ?, Optional<CountryStats>> maxBy = maxBy(comparing(CountryStats::getHighest));
-        
-        Map<Boolean, String> result = stats.stream()
-                .collect(partitioningBy(pr,
-                        collectingAndThen(maxBy,
-                                s -> s
-                                        .orElseThrow(exc)
-                                        .toString()
-                        )
-                )
-                );
-        System.out.println(result);
-    }
+  @Test
+  public void shouldCreatePartition() {
+    Predicate<CountryStats> pr = cs -> cs.getHighest().getMortality()
+            .doubleValue() > 100000;
+    Collector<CountryStats, ?, Optional<CountryStats>> maxBy = maxBy(comparing(CountryStats::getHighest));
+
+    Map<Boolean, String> result = stats.stream()
+            .collect(partitioningBy(pr,
+                    collectingAndThen(maxBy,
+                            s -> s
+                                    .orElseThrow(exc)
+                                    .toString()
+                    )
+            )
+            );
+    System.out.println(result);
+  }
 
 }
