@@ -16,20 +16,20 @@ import static java.util.stream.Collectors.toList;
  */
 public class Shuffle {
 
-    private final Stream<?> stream;
-    
-    public Shuffle(Stream<?> stream) {
-        this.stream = stream;
-    }
-    
-    public List<?> getList() {
-        return stream
-                .collect(collectingAndThen(
-                        toList(),
-                        l -> {
-                            Collections.shuffle(l);
-                            return l;
-                        }
-                ));
-    }
+  private final Stream<?> stream;
+
+  public Shuffle(Stream<?> stream) {
+    this.stream = stream;
+  }
+
+  public List<?> getList() {
+    return stream
+            .collect(collectingAndThen(
+                    toList(),
+                    l -> {
+                      Collections.shuffle(l);
+                      return l;
+                    }
+            ));
+  }
 }
