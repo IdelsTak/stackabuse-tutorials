@@ -12,7 +12,7 @@ import org.openjdk.jmh.Main;
  */
 public class BenchmarkRunner {
 
-    public static void main(String[] args) throws IOException {
-        Main.main(args);
-    }
+  public static void main(String[] args) throws IOException {
+    Main.main(args);
+  }
 }
