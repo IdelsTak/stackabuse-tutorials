@@ -30,30 +30,30 @@ import static java.util.stream.Collectors.toList;
 @Measurement(iterations = 2, time = 1, timeUnit = SECONDS)
 public class CollectingAndThenBenchmark {
 
-    @Fork(value = 1)
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
-    public void withoutCollectingAndThen(ExecutionPlan plan, Blackhole blackhole) {
-        List<Person> people = plan.getPeople();
+  @Fork(value = 1)
+  @Benchmark
+  @BenchmarkMode(Mode.Throughput)
+  @OutputTimeUnit(TimeUnit.SECONDS)
+  public void withoutCollectingAndThen(ExecutionPlan plan, Blackhole blackhole) {
+    List<Person> people = plan.getPeople();
 
-        Comparator<String> byNameLength = comparing(String::length).reversed();
+    Comparator<String> byNameLength = comparing(String::length).reversed();
 
-        String longestName = people.stream()
-                .map(Person::getFirstName)
-                .sorted(byNameLength)
-                .findFirst()
-                .orElse("?");
+    String longestName = people.stream()
+            .map(Person::getFirstName)
+            .sorted(byNameLength)
+            .findFirst()
+            .orElse("?");
 
-        blackhole.consume(longestName);
-    }
+    blackhole.consume(longestName);
+  }
 
-    @Fork(value = 1)
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
-    public void withCollectingAndThen(ExecutionPlan plan, Blackhole blackhole) {
-        List<Person> people = plan.getPeople();
+  @Fork(value = 1)
+  @Benchmark
+  @BenchmarkMode(Mode.Throughput)
+  @OutputTimeUnit(TimeUnit.SECONDS)
+  public void withCollectingAndThen(ExecutionPlan plan, Blackhole blackhole) {
+    List<Person> people = plan.getPeople();
 //        Collector<String, Object, String> col = collectingAndThen(
 //                maxBy(comparing(String::length)),
 //                s -> s.orElse("?")
@@ -63,17 +63,17 @@ public class CollectingAndThenBenchmark {
 //                .map(Person::getFirstName)
 //                .collect(col);
 
-        String longestName = people.stream()
-                .collect(
-                        collectingAndThen(
-                                mapping(Person::getFirstName, toList()),
-                                l -> {
-                                    return l.stream()
-                                            .collect(maxBy(comparing(String::length)))
-                                            .orElse("?");
-                                })
-                );
+    String longestName = people.stream()
+            .collect(
+                    collectingAndThen(
+                            mapping(Person::getFirstName, toList()),
+                            l -> {
+                              return l.stream()
+                                      .collect(maxBy(comparing(String::length)))
+                                      .orElse("?");
+                            })
+            );
 
-        blackhole.consume(longestName);
-    }
+    blackhole.consume(longestName);
+  }
 }
