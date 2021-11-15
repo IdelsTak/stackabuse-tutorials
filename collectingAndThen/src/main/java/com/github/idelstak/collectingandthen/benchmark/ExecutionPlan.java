@@ -20,26 +20,26 @@ import org.openjdk.jmh.annotations.State;
 @State(Scope.Benchmark)
 public class ExecutionPlan {
 
-    private List<Person> people;
+  private List<Person> people;
 
-    @Param({"10", "100", "1000", "10000", "100000"})
-    int count;
+  @Param({"10", "100", "1000", "10000", "100000"})
+  int count;
 
-    @Setup(Level.Iteration)
-    public void setup() {
-        people = new ArrayList<>();
+  @Setup(Level.Iteration)
+  public void setup() {
+    people = new ArrayList<>();
 
-        Name fakeName = new Faker().name();
+    Name fakeName = new Faker().name();
 
-        for (int i = 0; i < count; i++) {
-            String firstName = fakeName.firstName();
-            String lastName = fakeName.lastName();
-            people.add(new Person(firstName, lastName));
-        }
+    for (int i = 0; i < count; i++) {
+      String firstName = fakeName.firstName();
+      String lastName = fakeName.lastName();
+      people.add(new Person(firstName, lastName));
     }
+  }
 
-    public List<Person> getPeople() {
-        return people;
-    }
+  public List<Person> getPeople() {
+    return people;
+  }
 
 }
