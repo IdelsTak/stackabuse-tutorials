@@ -12,10 +12,10 @@ import java.util.stream.Collector;
  */
 public class Definition {
 
-    private Definition() {
-    }
+  private Definition() {
+  }
 
-    public static <T, A, R, RR> Collector<T, A, RR> collectingAndThen(Collector<T, A, R> downstream, Function<R, RR> finisher) {
-        throw new UnsupportedOperationException("Not supported yet");
-    }
+  public static <T, A, R, RR> Collector<T, A, RR> collectingAndThen(Collector<T, A, R> downstream, Function<R, RR> finisher) {
+    throw new UnsupportedOperationException("Not supported yet");
+  }
 }
