@@ -21,44 +21,44 @@ import static java.util.stream.Collectors.toSet;
  */
 public class Immutable {
 
-    private final Stream<Integer> stream;
+  private final Stream<Integer> stream;
 
-    public Immutable(Stream<Integer> stream) {
-        this.stream = stream;
-    }
+  public Immutable(Stream<Integer> stream) {
+    this.stream = stream;
+  }
 
-    public List<Integer> getList() {
-        return stream
-                .collect(
-                        collectingAndThen(
-                                toList(),
-                                Collections::unmodifiableList
-                        )
-                );
-    }
+  public List<Integer> getList() {
+    return stream
+            .collect(
+                    collectingAndThen(
+                            toList(),
+                            Collections::unmodifiableList
+                    )
+            );
+  }
 
-    public Set<Integer> getSet() {
-        return stream
-                .collect(
-                        collectingAndThen(
-                                toSet(),
-                                Collections::unmodifiableSet
-                        )
-                );
-    }
+  public Set<Integer> getSet() {
+    return stream
+            .collect(
+                    collectingAndThen(
+                            toSet(),
+                            Collections::unmodifiableSet
+                    )
+            );
+  }
 
-    public Map<Integer, Integer> getMap() {
-        return stream
-                .distinct()
-                .collect(
-                        collectingAndThen(
-                                Collectors.toMap(
-                                        Function.identity(),
-                                        i -> (int) Math.pow(i, 2)
-                                ),
-                                Collections::unmodifiableMap
-                        )
-                );
-    }
+  public Map<Integer, Integer> getMap() {
+    return stream
+            .distinct()
+            .collect(
+                    collectingAndThen(
+                            Collectors.toMap(
+                                    Function.identity(),
+                                    i -> (int) Math.pow(i, 2)
+                            ),
+                            Collections::unmodifiableMap
+                    )
+            );
+  }
 
 }
