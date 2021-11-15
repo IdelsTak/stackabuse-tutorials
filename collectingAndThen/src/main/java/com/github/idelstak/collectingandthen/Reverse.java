@@ -16,21 +16,21 @@ import static java.util.stream.Collectors.toList;
  */
 public class Reverse {
 
-    private final Stream<?> s;
+  private final Stream<?> s;
 
-    public Reverse(Stream<?> s) {
-        this.s = s;
-    }
+  public Reverse(Stream<?> s) {
+    this.s = s;
+  }
 
-    public List<?> getList() {
-        return s.collect(
-                collectingAndThen(
-                        toList(),
-                        l -> {
-                            reverse(l);
-                            return l;
-                        }
-                )
-        );
-    }
+  public List<?> getList() {
+    return s.collect(
+            collectingAndThen(
+                    toList(),
+                    l -> {
+                      reverse(l);
+                      return l;
+                    }
+            )
+    );
+  }
 }
