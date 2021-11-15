@@ -16,25 +16,25 @@ import static java.util.stream.Collectors.toList;
  */
 public class Singleton {
 
-    private final Stream<?> stream;
+  private final Stream<?> stream;
 
-    public Singleton(Stream<?> stream) {
-        this.stream = stream;
-    }
+  public Singleton(Stream<?> stream) {
+    this.stream = stream;
+  }
 
-    public Set<?> getSingleton() {
-        return stream.collect(collectingAndThen(
-                toList(),
-                l -> {
-                    if (l.size() > 1) {
-                        throw new IllegalArgumentException();
-                    } else {
-                        return l.isEmpty()
-                        ? Collections.emptySet()
-                        : Collections.singleton(l.get(0));
-                    }
-                }
-        ));
-    }
+  public Set<?> getSingleton() {
+    return stream.collect(collectingAndThen(
+            toList(),
+            l -> {
+              if (l.size() > 1) {
+                throw new IllegalArgumentException();
+              } else {
+                return l.isEmpty()
+                ? Collections.emptySet()
+                : Collections.singleton(l.get(0));
+              }
+            }
+    ));
+  }
 
 }
