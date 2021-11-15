@@ -16,16 +16,16 @@ import static org.junit.Assert.assertEquals;
  */
 public class SliceTest {
 
-    public SliceTest() {
-    }
+  public SliceTest() {
+  }
 
-    @Test
-    public void shouldSliceList() {
-        Stream<Integer> s = IntStream.rangeClosed(0, 10).boxed();
-        Slice slice = new Slice(s, 3, 7);
-        List<Integer> l = slice.getList();
+  @Test
+  public void shouldSliceList() {
+    Stream<Integer> s = IntStream.rangeClosed(0, 10).boxed();
+    Slice slice = new Slice(s, 3, 7);
+    List<Integer> l = slice.getList();
 
-        assertEquals("[3, 4, 5, 6, 7]", l.toString());
-    }
+    assertEquals("[3, 4, 5, 6, 7]", l.toString());
+  }
 
 }
