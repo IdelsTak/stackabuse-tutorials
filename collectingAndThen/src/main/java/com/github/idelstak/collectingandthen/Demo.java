@@ -19,13 +19,13 @@ import static java.util.stream.Collectors.toCollection;
  */
 public class Demo {
 
-    public static void main(String[] args) {
-        Stream<Integer> stream = Stream.of(1, 2, 3);
+  public static void main(String[] args) {
+    Stream<Integer> stream = Stream.of(1, 2, 3);
 
-        Collector downstream = toCollection(ArrayList::new);
-        Function finisher = list -> unmodifiableList((List<Integer>) list);
-        Collector collector = collectingAndThen(downstream, finisher);
+    Collector downstream = toCollection(ArrayList::new);
+    Function finisher = list -> unmodifiableList((List<Integer>) list);
+    Collector collector = collectingAndThen(downstream, finisher);
 
-        List<Integer> list = (List<Integer>) stream.collect(collector);
-    }
+    List<Integer> list = (List<Integer>) stream.collect(collector);
+  }
 }
