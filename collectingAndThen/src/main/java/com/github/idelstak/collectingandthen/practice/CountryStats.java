@@ -15,116 +15,116 @@ import static java.util.stream.Collectors.maxBy;
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
-public class CountryStats implements Comparable<CountryStats>{
+public class CountryStats implements Comparable<CountryStats> {
 
-    private final String country;
-    private final String code;
-    private final String year;
-    private final Mortality underFive;
-    private final Mortality seventyPlus;
-    private final Mortality fiftyToSixtyNine;
-    private final Mortality fiveToFourteen;
-    private final Mortality fifteenToFourtyNine;
+  private final String country;
+  private final String code;
+  private final String year;
+  private final Mortality underFive;
+  private final Mortality seventyPlus;
+  private final Mortality fiftyToSixtyNine;
+  private final Mortality fiveToFourteen;
+  private final Mortality fifteenToFourtyNine;
 
-    public CountryStats(
-            String country,
-            String code,
-            String year,
-            BigDecimal underFive,
-            BigDecimal seventyPlus,
-            BigDecimal fiftyToSixtyNine,
-            BigDecimal fiveToFourteen,
-            BigDecimal fifteenToFourtyNine) {
-        this.country = country;
-        this.code = code;
-        this.year = year;
-        this.underFive = new Mortality("Under 5 yrs", underFive);
-        this.seventyPlus = new Mortality("Over 70 yrs", seventyPlus);
-        this.fiftyToSixtyNine = new Mortality("Between 50 and 69 yrs", fiftyToSixtyNine);
-        this.fiveToFourteen = new Mortality("Between 5 and 14 yrs", fiveToFourteen);
-        this.fifteenToFourtyNine = new Mortality("Between 15 and 49 yrs", fifteenToFourtyNine);
-    }
+  public CountryStats(
+          String country,
+          String code,
+          String year,
+          BigDecimal underFive,
+          BigDecimal seventyPlus,
+          BigDecimal fiftyToSixtyNine,
+          BigDecimal fiveToFourteen,
+          BigDecimal fifteenToFourtyNine) {
+    this.country = country;
+    this.code = code;
+    this.year = year;
+    this.underFive = new Mortality("Under 5 yrs", underFive);
+    this.seventyPlus = new Mortality("Over 70 yrs", seventyPlus);
+    this.fiftyToSixtyNine = new Mortality("Between 50 and 69 yrs", fiftyToSixtyNine);
+    this.fiveToFourteen = new Mortality("Between 5 and 14 yrs", fiveToFourteen);
+    this.fifteenToFourtyNine = new Mortality("Between 15 and 49 yrs", fifteenToFourtyNine);
+  }
 
-    public String getCountry() {
-        return country;
-    }
+  public String getCountry() {
+    return country;
+  }
 
-    public String getYear() {
-        return year;
-    }
+  public String getYear() {
+    return year;
+  }
 
-    public Mortality getUnderFive() {
-        return underFive;
-    }
+  public Mortality getUnderFive() {
+    return underFive;
+  }
 
-    public Mortality getHighest() {
-        Stream<Mortality> stream = Stream.of(
-                underFive,
-                fiveToFourteen,
-                fifteenToFourtyNine,
-                fiftyToSixtyNine,
-                seventyPlus
-        );
+  public Mortality getHighest() {
+    Stream<Mortality> stream = Stream.of(
+            underFive,
+            fiveToFourteen,
+            fifteenToFourtyNine,
+            fiftyToSixtyNine,
+            seventyPlus
+    );
 
-        Mortality highestMortality = stream.collect(
-                collectingAndThen(
-                        maxBy(comparing(Mortality::getMortality)),
-                        m -> m.orElseThrow(RuntimeException::new)
-                )
-        );
-        
-        return highestMortality;
-    }
+    Mortality highestMortality = stream.collect(
+            collectingAndThen(
+                    maxBy(comparing(Mortality::getMortality)),
+                    m -> m.orElseThrow(RuntimeException::new)
+            )
+    );
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{country/region=").append(country);
+    return highestMortality;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("{country/region=").append(country);
 //        sb.append(", code=").append(code);
-        sb.append(", year=").append(year);
-        sb.append(", highest mortality=").append(getHighest());
+    sb.append(", year=").append(year);
+    sb.append(", highest mortality=").append(getHighest());
 //        sb.append(", (< 5 yrs)=").append(underFive);
 //        sb.append(", (5 - 14 yrs)=").append(fiveToFourteen);
 //        sb.append(", (15 - 49 yrs)=").append(fifteenToFourtyNine);
 //        sb.append(", (50 - 69 yrs)=").append(fiftyToSixtyNine);
 //        sb.append(", (70+ yrs)=").append(seventyPlus);
-        sb.append('}');
-        return sb.toString();
+    sb.append('}');
+    return sb.toString();
+  }
+
+  @Override
+  public int compareTo(CountryStats other) {
+    return comparing(CountryStats::getUnderFive).compare(this, other);
+  }
+
+  public class Mortality implements Comparable<Mortality> {
+
+    private final String ageGroup;
+    private final BigDecimal mortality;
+
+    public Mortality(String ageGroup, BigDecimal mortality) {
+      this.ageGroup = ageGroup;
+      this.mortality = mortality;
+    }
+
+    public String getAgeGroup() {
+      return ageGroup;
+    }
+
+    public BigDecimal getMortality() {
+      return mortality;
     }
 
     @Override
-    public int compareTo(CountryStats other) {
-        return comparing(CountryStats::getUnderFive).compare(this, other);
+    public String toString() {
+      return "{ageGroup=" + ageGroup + ", rate=" + mortality + '}';
     }
 
-    public class Mortality implements Comparable<Mortality> {
-
-        private final String ageGroup;
-        private final BigDecimal mortality;
-
-        public Mortality(String ageGroup, BigDecimal mortality) {
-            this.ageGroup = ageGroup;
-            this.mortality = mortality;
-        }
-
-        public String getAgeGroup() {
-            return ageGroup;
-        }
-
-        public BigDecimal getMortality() {
-            return mortality;
-        }
-
-        @Override
-        public String toString() {
-            return "{ageGroup=" + ageGroup + ", rate=" + mortality + '}';
-        }
-
-        @Override
-        public int compareTo(Mortality otherMortality) {
-            return comparing(Mortality::getMortality).compare(this, otherMortality);
-        }
-
+    @Override
+    public int compareTo(Mortality otherMortality) {
+      return comparing(Mortality::getMortality).compare(this, otherMortality);
     }
+
+  }
 
 }
