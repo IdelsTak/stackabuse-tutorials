@@ -38,68 +38,68 @@ import static org.apache.commons.csv.CSVFormat.DEFAULT;
  */
 public class StatsSource {
 
-    private static final Logger LOG = getLogger(StatsSource.class.getName());
-    private List<CountryStats> stats;
+  private static final Logger LOG = getLogger(StatsSource.class.getName());
+  private List<CountryStats> stats;
 
-    private static CountryStats toStats(CSVRecord rec) throws NumberFormatException {
-        return new CountryStats(
-                rec.get(0),
-                rec.get(1),
-                rec.get(2),
-                toDecimal(rec.get(3)),
-                toDecimal(rec.get(4)),
-                toDecimal(rec.get(5)),
-                toDecimal(rec.get(6)),
-                toDecimal(rec.get(7))
-        );
+  private static CountryStats toStats(CSVRecord rec) throws NumberFormatException {
+    return new CountryStats(
+            rec.get(0),
+            rec.get(1),
+            rec.get(2),
+            toDecimal(rec.get(3)),
+            toDecimal(rec.get(4)),
+            toDecimal(rec.get(5)),
+            toDecimal(rec.get(6)),
+            toDecimal(rec.get(7))
+    );
+  }
+
+  private static BigDecimal toDecimal(String s) throws NumberFormatException {
+    return new BigDecimal(parseDouble(s)).setScale(3, HALF_UP);
+  }
+
+  public List<CountryStats> getStats() {
+    if (stats == null) {
+      try {
+        Class<StatsSource> clazz = StatsSource.class;
+        String rsc = "deaths-from-indoor-air-pollution-by-age.csv";
+        URL url = clazz.getResource(rsc);
+        URI uri = initURI(url);
+        Path p = get(uri);
+        File f = p.toFile();
+        Reader in = new FileReader(f);
+        CSVFormat csvf = DEFAULT.builder()
+                .setHeader()
+                .setSkipHeaderRecord(true)
+                .build();
+        Spliterator<CSVRecord> spliterator = csvf.parse(in).spliterator();
+
+        stats = StreamSupport
+                .stream(spliterator,
+                        false
+                )
+                .map(StatsSource::toStats)
+                .collect(toList());
+      } catch (IOException | URISyntaxException ex) {
+        LOG.log(Level.SEVERE, null, ex);
+      }
     }
+    return unmodifiableList(stats);
+  }
 
-    private static BigDecimal toDecimal(String s) throws NumberFormatException {
-        return new BigDecimal(parseDouble(s)).setScale(3, HALF_UP);
-    }
-
-    public List<CountryStats> getStats() {
-        if (stats == null) {
-            try {
-                Class<StatsSource> clazz = StatsSource.class;
-                String rsc = "deaths-from-indoor-air-pollution-by-age.csv";
-                URL url = clazz.getResource(rsc);
-                URI uri = initURI(url);
-                Path p = get(uri);
-                File f = p.toFile();
-                Reader in = new FileReader(f);
-                CSVFormat csvf = DEFAULT.builder()
-                        .setHeader()
-                        .setSkipHeaderRecord(true)
-                        .build();
-                Spliterator<CSVRecord> spliterator = csvf.parse(in).spliterator();
-
-                stats = StreamSupport
-                        .stream(spliterator,
-                                false
-                        )
-                        .map(StatsSource::toStats)
-                        .collect(toList());
-            } catch (IOException | URISyntaxException ex) {
-                LOG.log(Level.SEVERE, null, ex);
-            }
+  private URI initURI(URL url) throws IOException, URISyntaxException {
+    URI uri = url.toURI();
+    if ("jar".equals(uri.getScheme())) {
+      for (FileSystemProvider fsp : installedProviders()) {
+        if (fsp.getScheme().equalsIgnoreCase("jar")) {
+          try {
+            fsp.getFileSystem(uri);
+          } catch (FileSystemNotFoundException fsnfe) {
+            fsp.newFileSystem(uri, emptyMap());
+          }
         }
-        return unmodifiableList(stats);
+      }
     }
-
-    private URI initURI(URL url) throws IOException, URISyntaxException {
-        URI uri = url.toURI();
-        if ("jar".equals(uri.getScheme())) {
-            for (FileSystemProvider fsp : installedProviders()) {
-                if (fsp.getScheme().equalsIgnoreCase("jar")) {
-                    try {
-                        fsp.getFileSystem(uri);
-                    } catch (FileSystemNotFoundException fsnfe) {
-                        fsp.newFileSystem(uri, emptyMap());
-                    }
-                }
-            }
-        }
-        return uri;
-    }
+    return uri;
+  }
 }
