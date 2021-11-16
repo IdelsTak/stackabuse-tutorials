@@ -7,6 +7,7 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.Friends;
 import com.github.javafaker.Internet;
 import com.github.javafaker.Lorem;
+import java.util.List;
 
 /**
  *
