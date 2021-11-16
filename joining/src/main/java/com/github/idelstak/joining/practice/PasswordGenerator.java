@@ -5,9 +5,7 @@ package com.github.idelstak.joining.practice;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -18,28 +16,30 @@ import java.util.stream.Stream;
  */
 public class PasswordGenerator {
 
-  private static final Character[] LETTERS;
-  private static final Character[] NUMBERS;
-  private static final Character[] LETTERS_AND_NUMBERS;
+  private static final Character[] CHARACTERS;
+  private final int passwordLength;
 
   static {
-    LETTERS = IntStream.rangeClosed('a', 'z')
-            .mapToObj(intVal -> (char) intVal)
-            .toArray(Character[]::new);
-    NUMBERS = IntStream.rangeClosed('0', '9')
-            .mapToObj(intVal -> (char) intVal)
-            .toArray(Character[]::new);
+    Stream<Character> letters = IntStream
+            .rangeClosed('a', 'z')
+            .mapToObj(intVal -> (char) intVal);
+    Stream<Character> numbers = IntStream
+            .rangeClosed('0', '9')
+            .mapToObj(intVal -> (char) intVal);
 
-    LETTERS_AND_NUMBERS = Stream.concat(
-            Arrays.stream(LETTERS),
-            Arrays.stream(NUMBERS)
-    ).toArray(Character[]::new);
+    CHARACTERS = Stream
+            .concat(letters, numbers)
+            .toArray(Character[]::new);
+  }
+
+  public PasswordGenerator(int passwordLength) {
+    this.passwordLength = passwordLength;
   }
 
   public Stream<Character> randomChars() {
     Random random = new Random();
     return Arrays
-            .stream(LETTERS_AND_NUMBERS)
+            .stream(CHARACTERS)
             .collect(Collectors.collectingAndThen(
                     Collectors.mapping(
                             c -> {
@@ -55,7 +55,7 @@ public class PasswordGenerator {
                       return list.stream();
                     }
             ))
-            .limit(10);
+            .limit(passwordLength);
 
   }
 
@@ -66,7 +66,7 @@ public class PasswordGenerator {
   }
 
   public static void main(String[] args) {
-    PasswordGenerator generator = new PasswordGenerator();
+    PasswordGenerator generator = new PasswordGenerator(20);
     for (int i = 0; i < 10; i++) {
       System.out.println(generator.get());
     }
