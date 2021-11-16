@@ -67,7 +67,7 @@ public class PasswordGenerator {
 
   public static void main(String[] args) {
     PasswordGenerator generator = new PasswordGenerator(20);
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
       System.out.println(generator.get());
     }
   }
