@@ -6,8 +6,6 @@ package com.github.idelstak.joining;
 import static java.lang.System.lineSeparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.Collector;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toMap;
