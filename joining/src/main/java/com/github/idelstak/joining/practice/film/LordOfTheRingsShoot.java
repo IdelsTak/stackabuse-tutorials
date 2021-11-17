@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -46,7 +47,7 @@ public class LordOfTheRingsShoot {
   }
 
   public String numberOfCharactersByLocation() {
-    Collector<Scene, Object, TreeMap<String, Long>> byLocation = (Collector<Scene, Object, TreeMap<String, Long>>) groupingBy(
+    Collector<Scene, ?, TreeMap<String, Long>> groupedByLocation = groupingBy(
             Scene::getLocation,
             TreeMap::new,
             Collectors.counting()
@@ -61,14 +62,48 @@ public class LordOfTheRingsShoot {
     return SCENES
             .stream()
             .distinct()
-            .collect(collectingAndThen(byLocation, asString));
+            .collect(collectingAndThen(groupedByLocation, asString));
+  }
+
+  public String charactersByLocation() {
+    Function<TreeMap<String, String>, String> asLocationWithCharacters = map -> {
+      return map.entrySet()
+              .stream()
+              .map(e -> e.getKey() + " " + e.getValue())
+              .collect(joining("\n\n"));
+    };
+    Function<List<Scene>, String> asCharactersString = list -> {
+      return list.stream()
+              .map(Scene::getCharacter)
+              .map(character -> "  " + character)
+              .collect(joining("\n", "{\n", "\n}"));
+    };
+    Collector<Scene, ?, TreeMap<String, String>> groupedByLocation = groupingBy(
+            Scene::getLocation,
+            TreeMap::new,
+            collectingAndThen(
+                    toList(),
+                    asCharactersString
+            )
+    );
+
+    return SCENES
+            .stream()
+            .distinct()
+            .collect(
+                    collectingAndThen(
+                            groupedByLocation,
+                            asLocationWithCharacters
+                    )
+            );
   }
 
   public static void main(String[] args) {
     LordOfTheRingsShoot shoot = new LordOfTheRingsShoot();
 
-    System.out.println(shoot.charactersAt("Black Gate"));
-
-    System.out.println(shoot.numberOfCharactersByLocation());
+//    System.out.println(shoot.charactersAt("Black Gate"));
+//
+//    System.out.println(shoot.numberOfCharactersByLocation());
+    System.out.println(shoot.charactersByLocation());
   }
 }
