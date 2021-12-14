@@ -13,15 +13,23 @@ import java.util.stream.Stream;
  */
 public class Empty {
 
-  public static void main(String[] args) {
-    Stream<Integer> numbers = Stream.of(2, 4, 6);
-    Predicate<Integer> predicate = i -> i % 2 == 0;
+  private final Stream<Integer> numbers;
+  private final Predicate<Integer> predicate;
 
-    String collected = numbers
+  public Empty(Predicate<Integer> predicate) {
+    this.predicate = predicate;
+    this.numbers = Stream.of(2, 4, 6);
+  }
+
+  public static void main(String[] args) {
+    System.out.println("Odd numbers: " + new Empty(i -> i % 2 != 0).getValue());
+    System.out.println("Even numbers: " + new Empty(i -> i % 2 == 0).getValue());
+  }
+
+  public String getValue() {
+    return numbers
             .filter(predicate)
             .map(Object::toString)
             .collect(Collectors.joining(","));
-
-    System.out.println(collected);
   }
 }
