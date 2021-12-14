@@ -27,17 +27,9 @@ public class LordOfTheRingsShoot {
 
   static {
     LordOfTheRings lotr = new Faker().lordOfTheRings();
-
     SCENES = generate(() -> new Scene(lotr.character(), lotr.location()))
             .limit(1000)
             .collect(toList());
-
-//    for (int i = 0; i < 1000; i++) {
-//      String character = lotr.character();
-//      String location = lotr.location();
-//      Scene scene = new Scene(character, location);
-//      SCENES.add(scene);
-//    }
   }
 
   public String charactersAt(String location) {
