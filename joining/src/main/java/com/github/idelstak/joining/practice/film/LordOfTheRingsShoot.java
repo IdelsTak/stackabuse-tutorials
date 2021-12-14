@@ -5,16 +5,17 @@ package com.github.idelstak.joining.practice.film;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.LordOfTheRings;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Stream.generate;
 
 /**
  *
@@ -25,16 +26,18 @@ public class LordOfTheRingsShoot {
   private static final List<Scene> SCENES;
 
   static {
-    SCENES = new ArrayList<>();
-    Faker faker = new Faker();
-    LordOfTheRings lotr = faker.lordOfTheRings();
+    LordOfTheRings lotr = new Faker().lordOfTheRings();
 
-    for (int i = 0; i < 1000; i++) {
-      String character = lotr.character();
-      String location = lotr.location();
-      Scene scene = new Scene(character, location);
-      SCENES.add(scene);
-    }
+    SCENES = generate(() -> new Scene(lotr.character(), lotr.location()))
+            .limit(1000)
+            .collect(toList());
+
+//    for (int i = 0; i < 1000; i++) {
+//      String character = lotr.character();
+//      String location = lotr.location();
+//      Scene scene = new Scene(character, location);
+//      SCENES.add(scene);
+//    }
   }
 
   public String charactersAt(String location) {
