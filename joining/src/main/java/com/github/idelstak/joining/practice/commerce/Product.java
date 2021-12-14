@@ -5,6 +5,7 @@ package com.github.idelstak.joining.practice.commerce;
 
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static java.lang.System.lineSeparator;
@@ -28,32 +29,33 @@ public class Product {
 
   @Override
   public String toString() {
+    Predicate<String> nonNull = Objects::nonNull;
+    Predicate<String> empty = String::isEmpty;
+    Predicate<String> nonEmpty = empty.negate();
+    Predicate<String> emptyTrimmed = s -> s.trim().isEmpty();
+    Predicate<String> nonEmptyTrimmed = emptyTrimmed.negate();
+
     return Stream.of(attribute, material, name)
-            .filter(Objects::nonNull)
-            .collect(
-                    () -> new StringJoiner("/").setEmptyValue("XXX"),
-                    StringJoiner::add,
-                    StringJoiner::merge
-            )
-            .toString();
+            .filter(nonNull.and(nonEmpty).and(nonEmptyTrimmed))
+            .collect(joining(" "));
   }
 
   public static void main(String[] args) {
 
-    Stream<Product> products = Stream.of(
-            new Product("Heavy Duty", "Rubber", "Plate"),
-            new Product("Ergonomic", "Rubber", "Computer"),
-            new Product("Durable", "Cotton", "Bench"),
-            new Product("Intelligent", "Silk", "Lamp"),
-            new Product("Enormous", "Granite", "Shoes"),
-            new Product(null, null, null),
-            new Product("Gorgeous", "", "Bench"),
-            new Product("Ergonomic", "Paper", "Pants"),
-            new Product("Enormous", "Copper", "Bag"),
-            new Product("Fantastic", " ", "Keyboard")
-    );
-
-    String descriptions = products.map(Product::toString)
+    String descriptions = Stream
+            .of(
+                    new Product("Heavy Duty", "Rubber", "Plate"),
+                    new Product("Ergonomic", "Rubber", "Computer"),
+                    new Product("Durable", "Cotton", "Bench"),
+                    new Product("Intelligent", "Silk", "Lamp"),
+                    new Product("Enormous", "Granite", "Shoes"),
+                    new Product("Practical", "", "Watch"),
+                    new Product("Gorgeous", null, "Bench"),
+                    new Product("Ergonomic", "Paper", "Pants"),
+                    new Product("Enormous", "Copper", "Bag"),
+                    new Product("Fantastic", " ", "Keyboard")
+            )
+            .map(Product::toString)
             .collect(joining(lineSeparator()));
 
     System.out.println(descriptions);
