@@ -25,7 +25,7 @@ public class Relative {
 
   private static final Function<Relative, String> TO_NAME_AND_PROFESSION = r -> r.getName() + ", " + r.getRelation();
 
- public Relative(String name, String relation, String profession) {
+  public Relative(String name, String relation, String profession) {
     this.name = name;
     this.relation = relation;
     this.profession = profession;
@@ -74,12 +74,14 @@ public class Relative {
     System.out.println(relativesByProfession(relatives, isTeacher, stringJoin));
   }
 
-public static String relativesByProfession(
-        Stream<Relative> relatives,
-        Predicate<Relative> byProfession,
-        Collector<String, ?, String> collector) {
-  return relatives
-          .filter(byProfession).map(TO_NAME_AND_PROFESSION)
+  public static String relativesByProfession(
+          Stream<Relative> relatives,
+          Predicate<Relative> byProfession,
+          Collector<String, ?, String> collector) {
+
+    return relatives
+            .filter(byProfession)
+            .map(TO_NAME_AND_PROFESSION)
             .collect(collector);
   }
 
