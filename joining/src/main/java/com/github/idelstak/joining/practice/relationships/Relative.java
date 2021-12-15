@@ -3,6 +3,8 @@
  */
 package com.github.idelstak.joining.practice.relationships;
 
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
@@ -41,7 +43,7 @@ public class Relative {
   }
 
   public static void main(String[] args) {
-    Stream<Relative> family = Stream.of(
+    Stream<Relative> relatives = Stream.of(
             new Relative("Manual Welch", "Granddaughter", "Accountant"),
             new Relative("Mariah Bergnaum", "Aunt", "Journalist"),
             new Relative("Ilona Waters", "Cousin", "Journalist"),
@@ -52,10 +54,13 @@ public class Relative {
             new Relative("Alexis Purdy", "Grandfather", "Translator"),
             new Relative("Shameka Lebsack", "Uncle", "Dietician")
     );
+    Predicate<Relative> isAccountant = r -> r.getProfession().equals("Accountant");
+    Function<Relative, String> toNameAndProfession = r -> r.getName() + ", " + r.getRelation();
 
-    String accountants = family.filter(r -> r.getProfession().equals("Accountant"))
-            .map(r -> r.getName() + ", " + r.getRelation())
-            .collect(joining("\n"));
+    String accountants = relatives
+            .filter(isAccountant)
+            .map(toNameAndProfession)
+            .collect(joining(System.lineSeparator()));
 
     System.out.println(accountants);
   }
