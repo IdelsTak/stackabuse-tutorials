@@ -7,11 +7,11 @@ import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -59,16 +59,21 @@ public class Relative {
     Predicate<Relative> isTeacher = r -> r.getProfession().equals("Teacher");
 
     Collector<String, ?, String> stringJoin = Collector.of(
-            () -> new StringJoiner(System.lineSeparator()).setEmptyValue("No relative"),
+            () -> {
+              return new StringJoiner(System.lineSeparator()).setEmptyValue("No relative");
+            },
             StringJoiner::add,
             StringJoiner::merge,
             StringJoiner::toString
     );
-    Collector<String, ?, String> collectAndThen = collectingAndThen(toList(), l -> {
-      return l.isEmpty()
+    Collector<String, ?, String> collectAndThen = collectingAndThen(
+            Collectors.toList(),
+            l -> {
+              return l.isEmpty()
               ? "No relative"
               : l.stream().collect(joining(System.lineSeparator()));
-    });
+            }
+    );
 
     System.out.println(relativesByProfession(relatives, isTeacher, collectAndThen));
     System.out.println(relativesByProfession(relatives, isTeacher, stringJoin));
