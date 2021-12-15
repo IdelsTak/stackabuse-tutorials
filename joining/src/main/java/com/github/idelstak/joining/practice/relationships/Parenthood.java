@@ -36,7 +36,8 @@ public class Parenthood {
   }
 
   public static void main(String[] args) {
-    Stream<Parenthood> stream = Stream.of(new Parenthood("Sabrina Gottlieb", 1),
+    Stream<Parenthood> stream = Stream.of(
+            new Parenthood("Sabrina Gottlieb", 1),
             new Parenthood("Jonna Kub", 3),
             new Parenthood("Damion O'Reilly", 2),
             new Parenthood("Anibal Botsford", 3),
