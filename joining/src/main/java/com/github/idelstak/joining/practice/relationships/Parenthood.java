@@ -35,11 +35,6 @@ public class Parenthood {
     return numberOfChildren;
   }
 
-  @Override
-  public String toString() {
-    return parent + ": " + numberOfChildren;
-  }
-
   public static void main(String[] args) {
     Stream<Parenthood> stream = Stream.of(new Parenthood("Sabrina Gottlieb", 1),
             new Parenthood("Jonna Kub", 3),
