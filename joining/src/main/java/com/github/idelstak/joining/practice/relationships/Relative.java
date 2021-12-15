@@ -3,11 +3,15 @@
  */
 package com.github.idelstak.joining.practice.relationships;
 
+import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -19,7 +23,9 @@ public class Relative {
   private final String relation;
   private final String profession;
 
-  public Relative(String name, String relation, String profession) {
+  private static final Function<Relative, String> TO_NAME_AND_PROFESSION = r -> r.getName() + ", " + r.getRelation();
+
+ public Relative(String name, String relation, String profession) {
     this.name = name;
     this.relation = relation;
     this.profession = profession;
@@ -37,11 +43,6 @@ public class Relative {
     return profession;
   }
 
-  @Override
-  public String toString() {
-    return String.format("%s: %s--%s", name, relation, profession);
-  }
-
   public static void main(String[] args) {
     Stream<Relative> relatives = Stream.of(
             new Relative("Manual Welch", "Granddaughter", "Accountant"),
@@ -54,14 +55,32 @@ public class Relative {
             new Relative("Alexis Purdy", "Grandfather", "Translator"),
             new Relative("Shameka Lebsack", "Uncle", "Dietician")
     );
-    Predicate<Relative> isAccountant = r -> r.getProfession().equals("Accountant");
-    Function<Relative, String> toNameAndProfession = r -> r.getName() + ", " + r.getRelation();
 
-    String accountants = relatives
-            .filter(isAccountant)
-            .map(toNameAndProfession)
-            .collect(joining(System.lineSeparator()));
+    Predicate<Relative> isTeacher = r -> r.getProfession().equals("Teacher");
 
-    System.out.println(accountants);
+    Collector<String, ?, String> stringJoin = Collector.of(
+            () -> new StringJoiner(System.lineSeparator()).setEmptyValue("No relative"),
+            StringJoiner::add,
+            StringJoiner::merge,
+            StringJoiner::toString
+    );
+    Collector<String, ?, String> collectAndThen = collectingAndThen(toList(), l -> {
+      return l.isEmpty()
+              ? "No relative"
+              : l.stream().collect(joining(System.lineSeparator()));
+    });
+
+    System.out.println(relativesByProfession(relatives, isTeacher, collectAndThen));
+    System.out.println(relativesByProfession(relatives, isTeacher, stringJoin));
   }
+
+public static String relativesByProfession(
+        Stream<Relative> relatives,
+        Predicate<Relative> byProfession,
+        Collector<String, ?, String> collector) {
+  return relatives
+          .filter(byProfession).map(TO_NAME_AND_PROFESSION)
+            .collect(collector);
+  }
+
 }
