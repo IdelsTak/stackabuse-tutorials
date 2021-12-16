@@ -48,7 +48,7 @@ public class JoiningBenchmark {
   @OutputTimeUnit(TimeUnit.SECONDS)
   public void withStringJoin(ExecutionPlan plan, Blackhole blackhole) {
     String asOneWord = String.join(DELIMITER, plan.getWords());
-    
+
     blackhole.consume(asOneWord);
   }
 
