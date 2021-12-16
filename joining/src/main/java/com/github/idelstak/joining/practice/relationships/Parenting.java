@@ -17,12 +17,12 @@ import static java.util.stream.Collectors.joining;
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
-public class Parenthood {
+public class Parenting {
 
   private final String parent;
   private final int numberOfChildren;
 
-  public Parenthood(String parent, int numberOfChildren) {
+  public Parenting(String parent, int numberOfChildren) {
     this.parent = parent;
     this.numberOfChildren = numberOfChildren;
   }
@@ -36,26 +36,26 @@ public class Parenthood {
   }
 
   public static void main(String[] args) {
-    Stream<Parenthood> stream = Stream.of(
-            new Parenthood("Sabrina Gottlieb", 1),
-            new Parenthood("Jonna Kub", 3),
-            new Parenthood("Damion O'Reilly", 2),
-            new Parenthood("Anibal Botsford", 3),
-            new Parenthood("Jeffry Bayer", 0),
-            new Parenthood("Sherrill Boehm", 3),
-            new Parenthood("Betsy D'Amore", 0),
-            new Parenthood("Prince VonRueden", 0),
-            new Parenthood("Devona Beer", 4),
-            new Parenthood("Seth O'Keefe", 4)
+    Stream<Parenting> parentingStream = Stream.of(
+            new Parenting("Sabrina Gottlieb", 1),
+            new Parenting("Jonna Kub", 3),
+            new Parenting("Damion O'Reilly", 2),
+            new Parenting("Anibal Botsford", 3),
+            new Parenting("Jeffry Bayer", 0),
+            new Parenting("Sherrill Boehm", 3),
+            new Parenting("Betsy D'Amore", 0),
+            new Parenting("Prince VonRueden", 0),
+            new Parenting("Devona Beer", 4),
+            new Parenting("Seth O'Keefe", 4)
     );
-    Function<Parenthood, String> keyMapper = ph -> ph.getParent() + " has ";
-    Function<Parenthood, String> valueMapper = ph -> {
+    Function<Parenting, String> keyMapper = ph -> ph.getParent() + " has ";
+    Function<Parenting, String> valueMapper = ph -> {
       int kids = ph.getNumberOfChildren();
       String a = kids == 0 ? "no" : Integer.toString(kids);
       String b = kids <= 1 ? " child" : " children";
       return a + b;
     };
-    Collector<Parenthood, ?, Map<String, String>> downstream = Collectors.toMap(keyMapper, valueMapper);
+    Collector<Parenting, ?, Map<String, String>> downstream = Collectors.toMap(keyMapper, valueMapper);
     Function<Map<String, String>, String> finisher = map -> {
       return map
               .entrySet()
@@ -64,7 +64,7 @@ public class Parenthood {
               .collect(joining(lineSeparator()));
     };
 
-    String result = stream.collect(collectingAndThen(downstream, finisher));
+    String result = parentingStream.collect(collectingAndThen(downstream, finisher));
 
     System.out.println(result);
   }
