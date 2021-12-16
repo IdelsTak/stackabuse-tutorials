@@ -27,17 +27,17 @@ public class OxfordComma {
 
   public String generate() {
     Collector<String, ?, List<String>> downstream = toList();
-    Function<List<String>, String> finisher = l -> {
+    Function<List<String>, String> finisher = list -> {
       String value = "[No words were provided]";
 
-      if (l.size() == 1) {
-        value = l.stream().collect(joining(""));
-      } else if (l.size() == 2) {
-        value = l.stream().collect(joining(" and "));
-      } else if (l.size() > 2) {
-        int lastIdx = l.size() - 1;
-        String first = l.stream().limit(lastIdx).collect(joining(", "));
-        String last = l.get(lastIdx);
+      if (list.size() == 1) {
+        value = list.stream().collect(joining(""));
+      } else if (list.size() == 2) {
+        value = list.stream().collect(joining(" and "));
+      } else if (list.size() > 2) {
+        int lastIdx = list.size() - 1;
+        String first = list.stream().limit(lastIdx).collect(joining(", "));
+        String last = list.get(lastIdx);
         value = Stream.of(first, last).collect(joining(", and "));
       }
 
