@@ -28,7 +28,7 @@ public class OxfordComma {
                     collectingAndThen(
                             toList(),
                             l -> {
-                              String value = "[No words to add oxford comma to]";
+                              String value = "[No words were provided]";
 
                               if (l.size() == 1) {
                                 value = l.stream().collect(joining(""));
