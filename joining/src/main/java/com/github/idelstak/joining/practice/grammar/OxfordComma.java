@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2021
  */
-package com.github.idelstak.joining.practice.relationships;
+package com.github.idelstak.joining.practice.grammar;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
