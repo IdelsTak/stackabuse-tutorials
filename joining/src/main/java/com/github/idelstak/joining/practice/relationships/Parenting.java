@@ -48,9 +48,9 @@ public class Parenting {
             new Parenting("Devona Beer", 4),
             new Parenting("Seth O'Keefe", 4)
     );
-    Function<Parenting, String> keyMapper = ph -> ph.getParent() + " has ";
-    Function<Parenting, String> valueMapper = ph -> {
-      int kids = ph.getNumberOfChildren();
+    Function<Parenting, String> keyMapper = p -> p.getParent() + " has ";
+    Function<Parenting, String> valueMapper = p -> {
+      int kids = p.getNumberOfChildren();
       String a = kids == 0 ? "no" : Integer.toString(kids);
       String b = kids <= 1 ? " child" : " children";
       return a + b;
@@ -64,8 +64,8 @@ public class Parenting {
               .collect(joining(lineSeparator()));
     };
 
-    String result = parentingStream.collect(collectingAndThen(downstream, finisher));
+    String details = parentingStream.collect(collectingAndThen(downstream, finisher));
 
-    System.out.println(result);
+    System.out.println(details);
   }
 }
