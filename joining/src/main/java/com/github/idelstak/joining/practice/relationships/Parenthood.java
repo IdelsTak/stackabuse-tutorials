@@ -51,7 +51,7 @@ public class Parenthood {
     Function<Parenthood, String> keyMapper = ph -> ph.getParent() + " has ";
     Function<Parenthood, String> valueMapper = ph -> {
       int kids = ph.getNumberOfChildren();
-      Object a = kids == 0 ? "no" : kids;
+      String a = kids == 0 ? "no" : Integer.toString(kids);
       String b = kids <= 1 ? " child" : " children";
       return a + b;
     };
