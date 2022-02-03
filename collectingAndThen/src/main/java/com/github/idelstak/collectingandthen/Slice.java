@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class Slice {
 
   private final Stream<Integer> s;
@@ -25,15 +22,10 @@ public class Slice {
 
   public List<Integer> getList() {
     return s.collect(
-            Collectors.collectingAndThen(Collectors.toList(),
-                    l -> {
-                      return l.stream()
-                              .skip(from)
-                              .limit(to - (from - 1))
-                              .collect(Collectors.toList());
-                    }
-            )
-    );
+        Collectors.collectingAndThen(
+            Collectors.toList(),
+            l -> {
+              return l.stream().skip(from).limit(to - (from - 1)).collect(Collectors.toList());
+            }));
   }
-
 }

@@ -13,10 +13,7 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toCollection;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class Demo {
 
   public static void main(String[] args) {

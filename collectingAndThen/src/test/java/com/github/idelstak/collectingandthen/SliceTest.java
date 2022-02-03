@@ -10,14 +10,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class SliceTest {
 
-  public SliceTest() {
-  }
+  public SliceTest() {}
 
   @Test
   public void shouldSliceList() {
@@ -27,5 +23,4 @@ public class SliceTest {
 
     assertEquals("[3, 4, 5, 6, 7]", l.toString());
   }
-
 }

@@ -13,10 +13,7 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 @State(Scope.Benchmark)
 public class ExecutionPlan {
 
@@ -41,5 +38,4 @@ public class ExecutionPlan {
   public List<Person> getPeople() {
     return people;
   }
-
 }

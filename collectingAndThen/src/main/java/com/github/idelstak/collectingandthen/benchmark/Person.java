@@ -5,10 +5,7 @@ package com.github.idelstak.collectingandthen.benchmark;
 
 import java.util.Objects;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class Person {
 
   private final String firstName;
@@ -62,5 +59,4 @@ public class Person {
     sb.append('}');
     return sb.toString();
   }
-
 }

@@ -9,14 +9,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class ReverseTest {
 
-  public ReverseTest() {
-  }
+  public ReverseTest() {}
 
   @Test
   public void shouldReverseList() {
@@ -26,5 +22,4 @@ public class ReverseTest {
 
     assertEquals("[3, 2, 1]", l.toString());
   }
-
 }

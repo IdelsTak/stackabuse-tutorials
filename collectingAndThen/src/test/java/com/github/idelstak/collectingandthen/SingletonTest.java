@@ -10,14 +10,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class SingletonTest {
 
-  public SingletonTest() {
-  }
+  public SingletonTest() {}
 
   @Test
   @SuppressWarnings("ThrowableResultIgnored")
@@ -33,5 +29,4 @@ public class SingletonTest {
     singleton = s3.getSingleton();
     assertEquals("[1]", singleton.toString());
   }
-
 }

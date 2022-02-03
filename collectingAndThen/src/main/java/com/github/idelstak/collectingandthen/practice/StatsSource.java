@@ -32,10 +32,7 @@ import static java.util.logging.Logger.getLogger;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.csv.CSVFormat.DEFAULT;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class StatsSource {
 
   private static final Logger LOG = getLogger(StatsSource.class.getName());
@@ -43,15 +40,14 @@ public class StatsSource {
 
   private static CountryStats toStats(CSVRecord rec) throws NumberFormatException {
     return new CountryStats(
-            rec.get(0),
-            rec.get(1),
-            rec.get(2),
-            toDecimal(rec.get(3)),
-            toDecimal(rec.get(4)),
-            toDecimal(rec.get(5)),
-            toDecimal(rec.get(6)),
-            toDecimal(rec.get(7))
-    );
+        rec.get(0),
+        rec.get(1),
+        rec.get(2),
+        toDecimal(rec.get(3)),
+        toDecimal(rec.get(4)),
+        toDecimal(rec.get(5)),
+        toDecimal(rec.get(6)),
+        toDecimal(rec.get(7)));
   }
 
   private static BigDecimal toDecimal(String s) throws NumberFormatException {
@@ -68,18 +64,11 @@ public class StatsSource {
         Path p = get(uri);
         File f = p.toFile();
         Reader in = new FileReader(f);
-        CSVFormat csvf = DEFAULT.builder()
-                .setHeader()
-                .setSkipHeaderRecord(true)
-                .build();
+        CSVFormat csvf = DEFAULT.builder().setHeader().setSkipHeaderRecord(true).build();
         Spliterator<CSVRecord> spliterator = csvf.parse(in).spliterator();
 
-        stats = StreamSupport
-                .stream(spliterator,
-                        false
-                )
-                .map(StatsSource::toStats)
-                .collect(toList());
+        stats =
+            StreamSupport.stream(spliterator, false).map(StatsSource::toStats).collect(toList());
       } catch (IOException | URISyntaxException ex) {
         LOG.log(Level.SEVERE, null, ex);
       }

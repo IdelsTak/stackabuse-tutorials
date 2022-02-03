@@ -9,14 +9,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotEquals;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class ShuffleTest {
 
-  public ShuffleTest() {
-  }
+  public ShuffleTest() {}
 
   @Test
   public void shouldShuffleList() {
@@ -25,5 +21,4 @@ public class ShuffleTest {
 
     assertNotEquals("[1, 2, 3]", list.toString());
   }
-
 }

@@ -12,14 +12,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class ImmutableTest {
 
-  public ImmutableTest() {
-  }
+  public ImmutableTest() {}
 
   @Test
   @SuppressWarnings("ThrowableResultIgnored")
@@ -28,8 +24,7 @@ public class ImmutableTest {
     List<Integer> l = i.getList();
 
     assertEquals("[1, 2, 3]", l.toString());
-    assertEquals("UnmodifiableRandomAccessList", l.getClass()
-            .getSimpleName());
+    assertEquals("UnmodifiableRandomAccessList", l.getClass().getSimpleName());
     assertThrows(UnsupportedOperationException.class, () -> l.add(4));
   }
 
@@ -44,16 +39,13 @@ public class ImmutableTest {
     assertThrows(UnsupportedOperationException.class, () -> set.add(3));
   }
 
-//    @Test
+  //    @Test
   @SuppressWarnings("ThrowableResultIgnored")
   public void mapShouldHaveDistinctEntries() {
     Stream<Integer> s = Stream.of(2, 3, 4, 4);
     Immutable i = new Immutable(s);
 
-    assertThrows(
-            IllegalStateException.class,
-            () -> i.getMap()
-    );
+    assertThrows(IllegalStateException.class, () -> i.getMap());
   }
 
   @Test
@@ -67,5 +59,4 @@ public class ImmutableTest {
     assertEquals("UnmodifiableMap", m.getClass().getSimpleName());
     assertThrows(UnsupportedOperationException.class, () -> m.put(5, 25));
   }
-
 }

@@ -11,14 +11,10 @@ import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.maxBy;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class CountryStats implements Comparable<CountryStats> {
 
   private final String country;
-  private final String code;
   private final String year;
   private final Mortality underFive;
   private final Mortality seventyPlus;
@@ -27,16 +23,15 @@ public class CountryStats implements Comparable<CountryStats> {
   private final Mortality fifteenToFourtyNine;
 
   public CountryStats(
-          String country,
-          String code,
-          String year,
-          BigDecimal underFive,
-          BigDecimal seventyPlus,
-          BigDecimal fiftyToSixtyNine,
-          BigDecimal fiveToFourteen,
-          BigDecimal fifteenToFourtyNine) {
+      String country,
+      String code,
+      String year,
+      BigDecimal underFive,
+      BigDecimal seventyPlus,
+      BigDecimal fiftyToSixtyNine,
+      BigDecimal fiveToFourteen,
+      BigDecimal fifteenToFourtyNine) {
     this.country = country;
-    this.code = code;
     this.year = year;
     this.underFive = new Mortality("Under 5 yrs", underFive);
     this.seventyPlus = new Mortality("Over 70 yrs", seventyPlus);
@@ -58,20 +53,14 @@ public class CountryStats implements Comparable<CountryStats> {
   }
 
   public Mortality getHighest() {
-    Stream<Mortality> stream = Stream.of(
-            underFive,
-            fiveToFourteen,
-            fifteenToFourtyNine,
-            fiftyToSixtyNine,
-            seventyPlus
-    );
+    Stream<Mortality> stream =
+        Stream.of(underFive, fiveToFourteen, fifteenToFourtyNine, fiftyToSixtyNine, seventyPlus);
 
-    Mortality highestMortality = stream.collect(
+    Mortality highestMortality =
+        stream.collect(
             collectingAndThen(
-                    maxBy(comparing(Mortality::getMortality)),
-                    m -> m.orElseThrow(RuntimeException::new)
-            )
-    );
+                maxBy(comparing(Mortality::getMortality)),
+                m -> m.orElseThrow(RuntimeException::new)));
 
     return highestMortality;
   }
@@ -80,14 +69,8 @@ public class CountryStats implements Comparable<CountryStats> {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{country/region=").append(country);
-//        sb.append(", code=").append(code);
     sb.append(", year=").append(year);
     sb.append(", highest mortality=").append(getHighest());
-//        sb.append(", (< 5 yrs)=").append(underFive);
-//        sb.append(", (5 - 14 yrs)=").append(fiveToFourteen);
-//        sb.append(", (15 - 49 yrs)=").append(fifteenToFourtyNine);
-//        sb.append(", (50 - 69 yrs)=").append(fiftyToSixtyNine);
-//        sb.append(", (70+ yrs)=").append(seventyPlus);
     sb.append('}');
     return sb.toString();
   }
@@ -124,7 +107,5 @@ public class CountryStats implements Comparable<CountryStats> {
     public int compareTo(Mortality otherMortality) {
       return comparing(Mortality::getMortality).compare(this, otherMortality);
     }
-
   }
-
 }

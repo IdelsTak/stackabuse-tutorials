@@ -10,10 +10,7 @@ import static java.util.Collections.reverse;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class Reverse {
 
   private final Stream<?> s;
@@ -24,13 +21,11 @@ public class Reverse {
 
   public List<?> getList() {
     return s.collect(
-            collectingAndThen(
-                    toList(),
-                    l -> {
-                      reverse(l);
-                      return l;
-                    }
-            )
-    );
+        collectingAndThen(
+            toList(),
+            l -> {
+              reverse(l);
+              return l;
+            }));
   }
 }
