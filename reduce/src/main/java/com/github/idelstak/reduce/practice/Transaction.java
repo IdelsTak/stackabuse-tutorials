@@ -3,55 +3,46 @@
  */
 package com.github.idelstak.reduce.practice;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class Transaction {
 
-    private final Product product;
-    private final int quantity;
+  private final Product product;
+  private final int quantity;
 
-    public Transaction(Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-    }
+  public Transaction(Product product, int quantity) {
+    this.product = product;
+    this.quantity = quantity;
+  }
 
-    public Product getProduct() {
-        return product;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
 
-    public Price getTotalPrice() {
-        return product.getPrice().getTotal(quantity);
-    }
+  public Price getTotalPrice() {
+    return product.getPrice().getTotal(quantity);
+  }
 
-    public Weight getTotalWeight() {
-        return product.getWeight().getTotal(quantity);
-    }
+  public Weight getTotalWeight() {
+    return product.getWeight().getTotal(quantity);
+  }
 
-    public Transaction getMin(Transaction otherTransaction) {
-        Price min = this.getTotalPrice().getMin(otherTransaction.getTotalPrice());
+  public Transaction getMin(Transaction otherTransaction) {
+    Price min = this.getTotalPrice().getMin(otherTransaction.getTotalPrice());
 
-        return min.equals(this.getTotalPrice()) ? this : otherTransaction;
-    }
+    return min.equals(this.getTotalPrice()) ? this : otherTransaction;
+  }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "{\n"
-                + " Product: %s; price: $%.2f\n"
-                + " Qty: %d lbs\n"
-                + " Total price: $%.2f\n"
-                + "}",
-                this.getProduct().getName(),
-                this.getProduct().getPrice().getValue(),
-                this.getQuantity(),
-                this.getTotalPrice().getValue()
-        );
-    }
-
+  @Override
+  public String toString() {
+    return String.format(
+        "{\n" + " Product: %s; price: $%.2f\n" + " Qty: %d lbs\n" + " Total price: $%.2f\n" + "}",
+        this.getProduct().getName(),
+        this.getProduct().getPrice().getValue(),
+        this.getQuantity(),
+        this.getTotalPrice().getValue());
+  }
 }

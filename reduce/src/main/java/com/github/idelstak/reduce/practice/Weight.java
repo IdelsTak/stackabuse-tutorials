@@ -3,34 +3,30 @@
  */
 package com.github.idelstak.reduce.practice;
 
-/**
- *
- * @author Hiram K. <https://github.com/IdelsTak>
- */
+/** @author Hiram K. <https://github.com/IdelsTak> */
 public class Weight {
 
-    public static final Weight NIL = new Weight(0.0);
-    private final double value;
+  public static final Weight NIL = new Weight(0.0);
+  private final double value;
 
-    public Weight(double value) {
-        this.value = value;
-    }
+  public Weight(double value) {
+    this.value = value;
+  }
 
-    public double getValue() {
-        return value;
-    }
+  public double getValue() {
+    return value;
+  }
 
-    public Weight add(Weight otherWeight) {
-        return new Weight(value + otherWeight.getValue());
-    }
+  public Weight add(Weight otherWeight) {
+    return new Weight(value + otherWeight.getValue());
+  }
 
-    public Weight getTotal(int quantity) {
-        return new Weight(value * quantity);
-    }
+  public Weight getTotal(int quantity) {
+    return new Weight(value * quantity);
+  }
 
-    @Override
-    public String toString() {
-        return String.format("%.2f lbs", this.value);
-    }
-
+  @Override
+  public String toString() {
+    return String.format("%.2f lbs", this.value);
+  }
 }
